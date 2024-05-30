@@ -41,8 +41,18 @@ while ($true)
         Write-Output "[HOT CORNER] Activated!"
         #[Windows.Forms.Cursor]::Position
         [System.Windows.Forms.SendKeys]::SendWait('^{ESC}')
-        Start-Sleep -Seconds $keypress_waittime
-    }
+
+        
+        # wait for people to leave the button
+        while (([Windows.Forms.Cursor]::Position.X -In 0..$RightSide ) -and
+        ([Windows.Forms.Cursor]::Position.Y -In $BottomInRange..$Bottom))
+        {
+            Start-Sleep -Milliseconds $hotcorner_reactivity
+        }
+
+    } # End of if hits the corner
+    
+
     
     # Wait before rechecking again.
     Start-Sleep -Milliseconds $hotcorner_reactivity
