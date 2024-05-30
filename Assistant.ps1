@@ -25,10 +25,10 @@ Add-Type -AssemblyName System.Drawing
 
 [void] [System.Windows.Forms.Application]::EnableVisualStyles() 
 
-[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')       | out-null
-[System.Reflection.Assembly]::LoadWithPartialName('presentationframework')      | out-null
-[System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')             | out-null
-[System.Reflection.Assembly]::LoadWithPartialName('WindowsFormsIntegration')    | out-null
+[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
+[System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
+[System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')
+[System.Reflection.Assembly]::LoadWithPartialName('WindowsFormsIntegration')
 
 # Grab script location in a way that is compatible with PS2EXE
 if ($MyInvocation.MyCommand.CommandType -eq "ExternalScript")

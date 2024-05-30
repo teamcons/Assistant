@@ -76,7 +76,20 @@ while ($true)
         [KeySends.KeySend]::KeyDown("Tab")
         [KeySends.KeySend]::KeyUp("LWin")
         [KeySends.KeySend]::KeyUp("Tab")
-        Start-Sleep -Seconds $keypress_waittime
+
+
+        # wait for people to leave the button
+        Write-Output "[HOT CORNER] Wait for rearming..."
+        while   (([Windows.Forms.Cursor]::Position.X -In 0..$hotcorner_sensitivity) -and
+                ([Windows.Forms.Cursor]::Position.Y -In 0..$hotcorner_sensitivity))
+        {
+            Start-Sleep -Milliseconds $hotcorner_reactivity
+        }
+        Write-Output "[HOT CORNER] Ready!"
+
+
+
+
     }
     
     Start-Sleep -Milliseconds $hotcorner_reactivity

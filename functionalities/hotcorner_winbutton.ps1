@@ -16,7 +16,6 @@ Add-Type -AssemblyName System.Windows.Forms
 
 [int]$hotcorner_reactivity              = 500   # In milliseconds - How often to check mouse location.
 [byte]$hotcorner_sensitivity            = 50    # In pixels - Size of hot corner area
-[byte]$keypress_waittime                = 5     # In seconds - How long before rearming hot corner
 
 # Calculate positions of the hot corner area
 [int]$Bottom = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
@@ -44,16 +43,18 @@ while ($true)
 
         
         # wait for people to leave the button
-        while (([Windows.Forms.Cursor]::Position.X -In 0..$RightSide ) -and
-        ([Windows.Forms.Cursor]::Position.Y -In $BottomInRange..$Bottom))
+        Write-Output "[HOT CORNER] Wait for rearming..."
+        while   (([Windows.Forms.Cursor]::Position.X -In 0..$RightSide ) -and
+                ([Windows.Forms.Cursor]::Position.Y -In $BottomInRange..$Bottom))
         {
             Start-Sleep -Milliseconds $hotcorner_reactivity
         }
+        Write-Output "[HOT CORNER] Ready!"
 
     } # End of if hits the corner
     
 
-    
+
     # Wait before rechecking again.
     Start-Sleep -Milliseconds $hotcorner_reactivity
 }
