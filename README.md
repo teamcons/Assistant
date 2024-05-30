@@ -7,12 +7,11 @@
 -Keep awake
 -Hot corner top left : Overview
 -Hot corner: Hover meta
-
-Todo:
 -Autostart
--Clipboard manager
 
--Manage settings
+todo
+-Clipboard manager
+-Save settings
 
 
 

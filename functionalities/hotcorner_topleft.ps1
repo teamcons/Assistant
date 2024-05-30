@@ -18,16 +18,22 @@
 #========================================
 # Get all important variables in place 
 
+param(
+    [int]$hotcorner_reactivity              = 500,   # In milliseconds - How often to check mouse location.
+    [byte]$hotcorner_sensitivity            = 20    # In pixels - Size of hot corner area
+    )
+
 
 # Imports
 Add-Type -AssemblyName System.Windows.Forms
 
-[int]$hotcorner_reactivity              = 500   # In milliseconds - How often to check mouse location.
-[byte]$hotcorner_sensitivity            = 20    # In pixels - Size of hot corner area
-[byte]$keypress_waittime                = 1     # In seconds - How long before rearming hot corner
 
 
+    #==========================================
+    #                Functions                =
+    #==========================================
 
+#========================================
 # This is very ugly, but we cannot send "Meta + Tab" otherwise
 # We basically code in another language what we need, and slorp it in our code as a function
 #https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
@@ -59,7 +65,13 @@ Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
 
 
 
-# Test forever
+
+    #=========================================
+    #                MAINLOOP                =
+    #=========================================
+
+#========================================
+# The test is Forever
 while ($true)
 {
 
@@ -90,7 +102,10 @@ while ($true)
 
 
 
-    }
-    
+    } # End of if hits the corner
+
+
+
+    # Wait before rechecking again.
     Start-Sleep -Milliseconds $hotcorner_reactivity
 }

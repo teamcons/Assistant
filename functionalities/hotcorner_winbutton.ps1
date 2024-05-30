@@ -11,23 +11,38 @@
 #-------------------------------------
 
 
-# Imports
-Add-Type -AssemblyName System.Windows.Forms
+    #===============================================
+    #                Initialization                =
+    #===============================================
 
-[int]$hotcorner_reactivity              = 500   # In milliseconds - How often to check mouse location.
-[byte]$hotcorner_sensitivity            = 50    # In pixels - Size of hot corner area
+#========================================
+# Get all important variables in place 
+
+param(
+    [int]$hotcorner_reactivity              = 500,   # In milliseconds - How often to check mouse location.
+    [byte]$hotcorner_sensitivity            = 50    # In pixels - Size of hot corner area
+    )
 
 # Calculate positions of the hot corner area
-[int]$Bottom = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
-[int]$BottomInRange = ($Bottom - $hotcorner_sensitivity)
+[int]$Bottom                            = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
+[int]$BottomInRange                     = ($Bottom - $hotcorner_sensitivity)
 
 
 # We check a bit further on X, because the button is off center
 # This way the hot corner is a real "hover over windows logo" button
-[int]$RightSide = ($hotcorner_sensitivity + 5)
+[int]$RightSide                         = ($hotcorner_sensitivity + 5)
+
+# Imports
+Add-Type -AssemblyName System.Windows.Forms
 
 
-# Test forever
+
+    #=========================================
+    #                MAINLOOP                =
+    #=========================================
+
+#========================================
+# The test is Forever
 while ($true)
 {
 

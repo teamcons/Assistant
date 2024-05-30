@@ -71,7 +71,7 @@ $Menu_Toggle_HotCorner_TopLeft.Add_Click({
 
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_WinButton = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_HotCorner_WinButton.Checked = $true
+$Menu_Toggle_HotCorner_WinButton.Checked = $false
 $Menu_Toggle_HotCorner_WinButton.Text = "Hot corner (Windows button)"
 $Menu_Toggle_HotCorner_WinButton.Add_Click({
     # If it was checked when clicked, stop it
@@ -99,7 +99,7 @@ $Menu_Toggle_HotCorner_WinButton.Add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_KeepAwake = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_KeepAwake.Checked = $true
-$Menu_Toggle_KeepAwake.Text = "Keep awake"
+$Menu_Toggle_KeepAwake.Text = "Keep puter awake"
 $Menu_Toggle_KeepAwake.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -153,7 +153,7 @@ $Menu_Toggle_Autostart.Add_Click({
  
 # Stop everything
 $Menu_Exit = New-Object System.Windows.Forms.MenuItem
-$Menu_Exit.Text = "Close app"
+$Menu_Exit.Text = "Quit Assistant"
 $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
 
