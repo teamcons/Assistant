@@ -10,13 +10,13 @@ else
 # ENERGYDRINK
 #<# 
 ps2exe `
--inputFile $ScriptPath\sources\Assistant.ps1 `
+-inputFile $ScriptPath\Assistant.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
--title "EnergyDrink" `
--description "Keep puter awake!" `
+-title "Assistant" `
+-description "Helps you" `
 -company "teamcons" `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
@@ -39,7 +39,7 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\hotcorner_topleft.exe
+-outputFile $ScriptPath\functionalities\hotcorner_topleft.exe
 
 
 ps2exe `
@@ -54,7 +54,7 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\hotcorner_winbutton.exe
+-outputFile $ScriptPath\functionalities\hotcorner_winbutton.exe
 
 
 ps2exe `
@@ -69,4 +69,4 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\keepawake.exe
+-outputFile $ScriptPath\functionalities\keepawake.exe
