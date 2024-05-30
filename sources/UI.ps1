@@ -102,6 +102,21 @@ $Menu_Toggle_KeepAwake.Checked = $true
 $Menu_Toggle_KeepAwake.Text = "Keep puter awake"
 
 
+$Menu_Toggle_KeepAwake.Add_Click({
+    # If it was checked when clicked, stop it
+    # Else, it wasnt checked, so start it
+    if ($Menu_Toggle_KeepAwake.Checked) {
+        #Stop-Process -Id $keepawakeID
+        Stop-Process -Name keepawake
+        $Menu_Toggle_KeepAwake.Checked = $false
+        $Main_Tool_Icon.Icon = $icondark }
+    else {
+        $keepawakeID = (Start-Process $ScriptPath\functionalities\keepawake.exe -passthru).ID
+        $Menu_Toggle_KeepAwake.Checked = $true
+        $Main_Tool_Icon.Icon = $icon }
+ })
+
+
 
 # ----------------------------------------------------
 # Part - Add the systray menu
@@ -165,4 +180,3 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
  
 
 # ---------------------------------------------------------------------
-

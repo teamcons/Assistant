@@ -23,10 +23,6 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# Load everything we need
-Import-Module $ScriptPath\sources\UI.ps1
-Import-Module $ScriptPath\sources\utils.ps1
-
 
 [void] [System.Windows.Forms.Application]::EnableVisualStyles() 
 
@@ -42,11 +38,11 @@ else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
+# Load everything we need
+Import-Module $ScriptPath\sources\UI.ps1
+Import-Module $ScriptPath\sources\utils.ps1
 
-
-
-# Read the file
-$settings = Import-LocalizedData -FileName settings.psd1
+echo imported
 
 
 
@@ -69,15 +65,29 @@ $streamdark = [System.IO.MemoryStream]::new($iconBytes, 0, $iconBytes.Length)
 $icondark = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($streamdark).GetHIcon()))
 
 
+echo seting
 
+# Read the file
+$settings = Import-LocalizedData -FileName settings.psd1
 
+echo start
 
 # Start the subprocesses
-# The hotcorner ones cant be jobs. Keepawake can but oh well
-$keepawakeID = (Start-Process $ScriptPath\functionalities\keepawake.exe -passthru).ID
-$hotcorner_topleft_ID = (Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe -passthru).ID
-#$hotcorner_winbutton_ID = (Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe -passthru).ID
+if ($settings.TopLeftOverview.Enabled)
+{
+    Start-Process -FilePath $ScriptPath\functionalities\hotcorner_topleft.exe -ArgumentList $settings.TopLeftOverview.reactivity,$settings.TopLeftOverview.sensitivity 
+}
 
+if ($settings.WindowsButton.Enabled) 
+{
+    Start-Process  -FilePath $ScriptPath\functionalities\hotcorner_winbutton.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+}
+
+
+if ($settings.KeepAwake.Enabled)
+{
+    Start-Process -FilePath $ScriptPath\functionalities\keepawake.exe    
+}
 
 
 
@@ -89,6 +99,7 @@ $Main_Tool_Icon.Visible = $true
 $Main_Tool_Icon.ShowBalloonTip(500)
 
 
+echo end
 
 # Force garbage collection just to start slightly lower RAM usage.
 [System.GC]::Collect()
