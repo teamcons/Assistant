@@ -20,7 +20,7 @@
 
 param(
     [int]$hotcorner_reactivity              = 500,   # In milliseconds - How often to check mouse location.
-    [byte]$hotcorner_sensitivity            = 20    # In pixels - Size of hot corner area
+    [byte]$hotcorner_sensitivity            = 30    # In pixels - Size of hot corner area
     )
 
 

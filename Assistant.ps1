@@ -23,6 +23,11 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
+# Load everything we need
+Import-Module $ScriptPath\sources\UI.ps1
+Import-Module $ScriptPath\sources\utils.ps1
+
+
 [void] [System.Windows.Forms.Application]::EnableVisualStyles() 
 
 [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
@@ -36,6 +41,13 @@ if ($MyInvocation.MyCommand.CommandType -eq "ExternalScript")
 else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
+
+
+
+
+# Read the file
+$settings = Import-LocalizedData -FileName settings.psd1
+
 
 
 #================================
@@ -59,42 +71,6 @@ $icondark = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($str
 
 
 
-# This is very ugly
-#https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
-$source = @"
-using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-namespace KeySends
-{
-    public class KeySend
-    {
-        [DllImport("user32.dll")]
-        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-        private const int KEYEVENTF_EXTENDEDKEY = 1;
-        private const int KEYEVENTF_KEYUP = 2;
-        public static void KeyDown(Keys vKey)
-        {
-            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY, 0);
-        }
-        public static void KeyUp(Keys vKey)
-        {
-            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
-        }
-    }
-}
-"@
-Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
-
-# Stop EVERYTHING
-function Stop-Tree {
-    Param([int]$ppid)
-    Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq $ppid } | ForEach-Object { Stop-Tree $_.ProcessId }
-    Stop-Process -Id $ppid
-}
-
-
 
 # Start the subprocesses
 # The hotcorner ones cant be jobs. Keepawake can but oh well
@@ -103,9 +79,6 @@ $hotcorner_topleft_ID = (Start-Process $ScriptPath\functionalities\hotcorner_top
 #$hotcorner_winbutton_ID = (Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe -passthru).ID
 
 
-
-# Load everything we need
-Import-Module $ScriptPath\sources\UI.ps1
 
 
 # Tell user we started
