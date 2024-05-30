@@ -4,12 +4,14 @@
 
 ### All the stuff
 
+Done
 -Keep awake
 -Hot corner top left : Overview
 -Hot corner: Hover meta
--Autostart
+-Has settings
 
-todo
+Todo
+-Autostart (is broken)
 -Clipboard manager
 -Save settings
 
@@ -17,9 +19,9 @@ todo
 
 
   <table align="center" border="none">
-      <td><img src="https://github.com/teamcons/PS-Whimsiness/blob/main/images/Screenshot CountingSheeps.png"" /></td>
+      <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png"" /></td>
       <td><p>
-
+</table>
 
 # Acknowledgments
 
