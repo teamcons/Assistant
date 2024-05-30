@@ -45,19 +45,19 @@ $Menu_About.add_Click({
 
 
 # Toggle between halt and continue
-$Menu_Toggle_HC = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_HC.Checked = $true
-$Menu_Toggle_HC.Text = "Hot corner (Top left overview)"
-$Menu_Toggle_HC.Add_Click({
+$Menu_Toggle_HotCorner_TopLeft = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_HotCorner_TopLeft.Checked = $true
+$Menu_Toggle_HotCorner_TopLeft.Text = "Hot corner (Top left overview)"
+$Menu_Toggle_HotCorner_TopLeft.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
-    if ($Menu_Toggle_HC.Checked) {
+    if ($Menu_Toggle_HotCorner_TopLeft.Checked) {
         #Stop-Process -Id $hotcorner_topleft_ID
         Stop-Process -Name hotcorner_topleft
-        $Menu_Toggle_HC.Checked = $false}
+        $Menu_Toggle_HotCorner_TopLeft.Checked = $false}
     else {
         $hotcorner_topleft_ID = (Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe -passthru).ID
-        $Menu_Toggle_HC.Checked = $true
+        $Menu_Toggle_HotCorner_TopLeft.Checked = $true
     
         $hotcorner_topleft_ID}
  })
@@ -70,19 +70,19 @@ $Menu_Toggle_HC.Add_Click({
 
 
 # Toggle between halt and continue
-$Menu_Toggle_HC_Meta = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_HC_Meta.Checked = $true
-$Menu_Toggle_HC_Meta.Text = "Hot corner (Windows button)"
-$Menu_Toggle_HC_Meta.Add_Click({
+$Menu_Toggle_HotCorner_WinButton = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_HotCorner_WinButton.Checked = $true
+$Menu_Toggle_HotCorner_WinButton.Text = "Hot corner (Windows button)"
+$Menu_Toggle_HotCorner_WinButton.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
-    if ($Menu_Toggle_HC_Meta.Checked) {
+    if ($Menu_Toggle_HotCorner_WinButton.Checked) {
         #Stop-Process -Id $hotcorner_winbutton_ID
         Stop-Process -Name hotcorner_winbutton
-        $Menu_Toggle_HC_Meta.Checked = $false}
+        $Menu_Toggle_HotCorner_WinButton.Checked = $false}
     else {
         $hotcorner_winbutton_ID = (Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe -passthru).ID
-        $Menu_Toggle_HC_Meta.Checked = $true}
+        $Menu_Toggle_HotCorner_WinButton.Checked = $true}
 
 
  })
@@ -97,20 +97,20 @@ $Menu_Toggle_HC_Meta.Add_Click({
 
 
 # Toggle between halt and continue
-$Menu_Toggle_KA = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_KA.Checked = $true
-$Menu_Toggle_KA.Text = "Keep awake"
-$Menu_Toggle_KA.Add_Click({
+$Menu_Toggle_KeepAwake = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_KeepAwake.Checked = $true
+$Menu_Toggle_KeepAwake.Text = "Keep awake"
+$Menu_Toggle_KeepAwake.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
-    if ($Menu_Toggle_KA.Checked) {
+    if ($Menu_Toggle_KeepAwake.Checked) {
         #Stop-Process -Id $keepawakeID
         Stop-Process -Name keepawake
-        $Menu_Toggle_KA.Checked = $false
+        $Menu_Toggle_KeepAwake.Checked = $false
         $Main_Tool_Icon.Icon = $icondark }
     else {
         $keepawakeID = (Start-Process $ScriptPath\functionalities\keepawake.exe -passthru).ID
-        $Menu_Toggle_KA.Checked = $true
+        $Menu_Toggle_KeepAwake.Checked = $true
         $Main_Tool_Icon.Icon = $icon }
  })
 
@@ -120,12 +120,30 @@ $Menu_Toggle_KA.Add_Click({
 # Part - Add the systray menu
 # ----------------------------------------------------        
 
+$autostart = -join($env:APPDATA,"\Microsoft\Windows\Start Menu\Programs\Startup")
+$WshShell = New-Object -ComObject WScript.Shell
+
+
+# Detect whether autostart is there
+$Menu_Toggle_Autostart = (Test-Path $autostart\Assistant.lnk)
 
 
 
-
-
-
+# Toggle between halt and continue
+$Menu_Toggle_Autostart = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_Autostart.Text = "Autostart"
+$Menu_Toggle_Autostart.Add_Click({
+    # If it was checked when clicked, delete autostart shortcut
+    # Else, it wasnt checked, so create autostart shortcut
+    if ($Menu_Toggle_Autostart.Checked) {
+        Remove-Item $autostart\Assistant.lnk
+        $Menu_Toggle_Autostart.Checked = $false}
+    else {
+        $Shortcut = $WshShell.CreateShortcut( -join($autostart,"\Assistant.lnk"))
+        $Shortcut.TargetPath = -join($ScriptPath,"\Assistant.exe")
+        $Shortcut.Save()
+        $Menu_Toggle_Autostart.Checked = $true }
+ })
 
 
 # ----------------------------------------------------
@@ -155,9 +173,10 @@ $Menu_Exit.add_Click({
 
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_About)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HC)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HC_Meta)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KA)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_TopLeft)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KeepAwake)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Autostart)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
  
