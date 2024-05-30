@@ -92,36 +92,6 @@ namespace KeySends
 "@
 Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
 
-
-
-
-# ---------------------------------------------------------------------
-# Action to keep system awake
-# ---------------------------------------------------------------------
-
-
-# Check where mouse, if corner then simulate keypress
-$hotcornerScript = {
-    while ($true) {
-
-        #[Windows.Forms.Cursor]::Position
-        # If in the corner
-        if ( ([Windows.Forms.Cursor]::Position.X -le $hotcorner_sensitivity) -and ([Windows.Forms.Cursor]::Position.Y -le $hotcorner_sensitivity))
-        {
-            # Trigger Windows + Tab (Overview)
-            Write-Output "[HOT CORNER] Activated!"
-            [KeySends.KeySend]::KeyDown("LWin")
-            [KeySends.KeySend]::KeyDown("Tab")
-            [KeySends.KeySend]::KeyUp("LWin")
-            [KeySends.KeySend]::KeyUp("Tab")
-            Start-Sleep -Milliseconds $hotcorner_reactivity
-        }
-        
-        Start-Sleep -Milliseconds $hotcorner_reactivity
-    }
-}
-
-
 # Stop EVERYTHING
 function Stop-Tree {
     Param([int]$ppid)
@@ -177,10 +147,10 @@ $Menu_Toggle_HC.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_HC.Checked) {
-        Stop-Process -Id $hotcornerID
+        Stop-Process -Id $hotcorner_topleft_ID
         $Menu_Toggle_HC.Checked = $false}
     else {
-        $hotcornerID = (Start-Process $ScriptPath\hotcorner.exe -passthru).ID
+        $hotcorner_topleft_ID = (Start-Process $ScriptPath\hotcorner_topleft.exe -passthru).ID
         $Menu_Toggle_HC.Checked = $true}
  })
 
@@ -199,10 +169,10 @@ $Menu_Toggle_HC_Meta.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_HC_Meta.Checked) {
-        Stop-Process -Id $hotcornermetaID
+        Stop-Process -Id $hotcorner_winbutton_ID
         $Menu_Toggle_HC_Meta.Checked = $false}
     else {
-        $hotcornermetaID = (Start-Process $ScriptPath\hotcorner_meta.exe -passthru).ID
+        $hotcorner_winbutton_ID = (Start-Process $ScriptPath\hotcorner_winbutton.exe -passthru).ID
         $Menu_Toggle_HC_Meta.Checked = $true}
  })
 
@@ -258,8 +228,8 @@ $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
 
     # Stop all
-    Stop-Process -Id $hotcornerID
-    Stop-Process -Id $hotcornermetaID
+    Stop-Process -Id $hotcorner_topleft_ID
+    Stop-Process -Id $hotcorner_winbutton_ID
     Stop-Process -Id $keepawakeID
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();
@@ -290,8 +260,8 @@ $Main_Tool_Icon.ShowBalloonTip(500)
 
 
 $keepawakeID = (Start-Process $ScriptPath\keepawake.exe -passthru).ID
-$hotcornerID = (Start-Process $ScriptPath\hotcorner.exe -passthru).ID
-$hotcornermetaID = (Start-Process $ScriptPath\hotcorner_meta.exe -passthru).ID
+$hotcorner_topleft_ID = (Start-Process $ScriptPath\hotcorner_topleft.exe -passthru).ID
+$hotcorner_winbutton_ID = (Start-Process $ScriptPath\hotcorner_winbutton.exe -passthru).ID
 
 
 

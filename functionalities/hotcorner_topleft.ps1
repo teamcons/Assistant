@@ -22,13 +22,14 @@
 # Imports
 Add-Type -AssemblyName System.Windows.Forms
 
-[int]$hotcorner_reactivity              = 500
-[byte]$hotcorner_sensitivity            = 20
-[byte]$keypress_waittime                = 5
+[int]$hotcorner_reactivity              = 500   # In milliseconds - How often to check mouse location.
+[byte]$hotcorner_sensitivity            = 20    # In pixels - Size of hot corner area
+[byte]$keypress_waittime                = 1     # In seconds - How long before rearming hot corner
 
 
 
 # This is very ugly, but we cannot send "Meta + Tab" otherwise
+# We basically code in another language what we need, and slorp it in our code as a function
 #https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
 $source = @"
 using System;
@@ -75,7 +76,7 @@ while ($true)
         [KeySends.KeySend]::KeyDown("Tab")
         [KeySends.KeySend]::KeyUp("LWin")
         [KeySends.KeySend]::KeyUp("Tab")
-        Start-Sleep -Milliseconds $hotcorner_reactivity
+        Start-Sleep -Seconds $keypress_waittime
     }
     
     Start-Sleep -Milliseconds $hotcorner_reactivity

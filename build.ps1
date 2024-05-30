@@ -28,7 +28,7 @@ ps2exe `
 # ENERGYDRINK
 #<# 
 ps2exe `
--inputFile $ScriptPath\sources\hotcorner.ps1 `
+-inputFile $ScriptPath\functionalities\hotcorner_topleft.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -39,11 +39,11 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\hotcorner.exe
+-outputFile $ScriptPath\hotcorner_topleft.exe
 
 
 ps2exe `
--inputFile $ScriptPath\sources\hotcorner_meta.ps1 `
+-inputFile $ScriptPath\functionalities\hotcorner_winbutton.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -54,11 +54,11 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\hotcorner_meta.exe
+-outputFile $ScriptPath\hotcorner_winbutton.exe
 
 
 ps2exe `
--inputFile $ScriptPath\sources\keepawake.ps1 `
+-inputFile $ScriptPath\functionalities\keepawake.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
