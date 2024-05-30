@@ -10,7 +10,7 @@ else
 # ENERGYDRINK
 #<# 
 ps2exe `
--inputFile $ScriptPath\sources\energydrink.ps1 `
+-inputFile $ScriptPath\sources\Assistant.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -21,14 +21,14 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\energydrink.exe
+-outputFile $ScriptPath\Assistant.exe
  #>
 
 #========================
 # ENERGYDRINK
 #<# 
 ps2exe `
--inputFile $ScriptPath\sources\warmedge.ps1 `
+-inputFile $ScriptPath\sources\hotcorner.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -39,4 +39,34 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\warmedge.exe
+-outputFile $ScriptPath\hotcorner.exe
+
+
+ps2exe `
+-inputFile $ScriptPath\sources\hotcorner_meta.ps1 `
+-iconFile $ScriptPath\assets\soft-drink.ico `
+-noConsole `
+-noOutput `
+-exitOnCancel `
+-title "Warm edge" `
+-description "Top left hot corner" `
+-company "teamcons" `
+-copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
+-version 0.9 `
+-Verbose `
+-outputFile $ScriptPath\hotcorner_meta.exe
+
+
+ps2exe `
+-inputFile $ScriptPath\sources\keepawake.ps1 `
+-iconFile $ScriptPath\assets\soft-drink.ico `
+-noConsole `
+-noOutput `
+-exitOnCancel `
+-title "Warm edge" `
+-description "Top left hot corner" `
+-company "teamcons" `
+-copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
+-version 0.9 `
+-Verbose `
+-outputFile $ScriptPath\keepawake.exe

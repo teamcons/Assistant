@@ -148,6 +148,7 @@ $Main_Tool_Icon.Add_Click({
 })
 
 
+
 # About in notification bubble
 $Menu_About = New-Object System.Windows.Forms.MenuItem
 $Menu_About.Text = "About"
@@ -163,6 +164,9 @@ $Menu_About.add_Click({
  })
 
 
+# ----------------------------------------------------
+# Part - HOTCORNER
+# ----------------------------------------------------        
 
 
 # Toggle between halt and continue
@@ -176,9 +180,39 @@ $Menu_Toggle_HC.Add_Click({
         Stop-Process -Id $hotcornerID
         $Menu_Toggle_HC.Checked = $false}
     else {
-        $hotcornerID = (Start-Process $ScriptPath\warmedge.exe -passthru).ID
+        $hotcornerID = (Start-Process $ScriptPath\hotcorner.exe -passthru).ID
         $Menu_Toggle_HC.Checked = $true}
  })
+
+
+
+# ----------------------------------------------------
+# Part - HOTCORNER-META
+# ----------------------------------------------------        
+
+
+# Toggle between halt and continue
+$Menu_Toggle_HC_Meta = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_HC_Meta.Checked = $true
+$Menu_Toggle_HC_Meta.Text = "Hot corner (Top left)"
+$Menu_Toggle_HC_Meta.Add_Click({
+    # If it was checked when clicked, stop it
+    # Else, it wasnt checked, so start it
+    if ($Menu_Toggle_HC_Meta.Checked) {
+        Stop-Process -Id $hotcornermetaID
+        $Menu_Toggle_HC_Meta.Checked = $false}
+    else {
+        $hotcornermetaID = (Start-Process $ScriptPath\hotcorner_meta.exe -passthru).ID
+        $Menu_Toggle_HC_Meta.Checked = $true}
+ })
+
+
+
+
+
+# ----------------------------------------------------
+# Part - KEEPAWAKE
+# ----------------------------------------------------        
 
 
 # Toggle between halt and continue
@@ -200,7 +234,21 @@ $Menu_Toggle_KA.Add_Click({
 
 
 
+# ----------------------------------------------------
+# Part - Add the systray menu
+# ----------------------------------------------------        
 
+
+
+
+
+
+
+
+
+# ----------------------------------------------------
+# Part - ELSE
+# ----------------------------------------------------        
 
  
 # Stop everything
@@ -211,6 +259,7 @@ $Menu_Exit.add_Click({
 
     # Stop all
     Stop-Process -Id $hotcornerID
+    Stop-Process -Id $hotcornermetaID
     Stop-Process -Id $keepawakeID
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();
@@ -220,6 +269,7 @@ $Menu_Exit.add_Click({
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_About)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HC)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HC_Meta)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KA)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
@@ -240,8 +290,8 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
 
 $keepawakeID = (Start-Process $ScriptPath\keepawake.exe -passthru).ID
-$hotcornerID = (Start-Process $ScriptPath\warmedge.exe -passthru).ID
-
+$hotcornerID = (Start-Process $ScriptPath\hotcorner.exe -passthru).ID
+$hotcornermetaID = (Start-Process $ScriptPath\hotcorner_meta.exe -passthru).ID
 
 
 
