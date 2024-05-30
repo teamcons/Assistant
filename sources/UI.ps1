@@ -157,14 +157,10 @@ $Menu_Exit.Text = "Close app"
 $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
 
-    # Stop all
-    #Stop-Process -Id $hotcorner_topleft_ID
-    #Stop-Process -Id $hotcorner_winbutton_ID
-    #Stop-Process -Id $keepawakeID
-
-    Stop-Process -Name hotcorner_topleft
-    Stop-Process -Name hotcorner_winbutton
-    Stop-Process -Name keepawake
+    # Stop everything that needs stopping
+    if ($Menu_Toggle_HotCorner_TopLeft.Checked)     {Stop-Process -Name hotcorner_topleft}
+    if ($Menu_Toggle_HotCorner_WinButton.Checked)   {Stop-Process -Name hotcorner_winbutton}
+    if ($Menu_Toggle_KeepAwake.Checked)             {Stop-Process -Name keepawake}
 
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();
@@ -181,14 +177,5 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
  
 
-
-
-
 # ---------------------------------------------------------------------
-
-$Main_Tool_Icon.BalloonTipTitle = "Started !"
-$Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-$Main_Tool_Icon.BalloonTipText = "The puter is now prevented from going to sleep"
-$Main_Tool_Icon.Visible = $true
-$Main_Tool_Icon.ShowBalloonTip(500)
 
