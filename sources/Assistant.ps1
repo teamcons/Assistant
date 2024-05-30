@@ -280,11 +280,11 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
 # ---------------------------------------------------------------------
 
-#$Main_Tool_Icon.BalloonTipTitle = "Started !"
-#$Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-#$Main_Tool_Icon.BalloonTipText = "The puter is now prevented from going to sleep"
-#$Main_Tool_Icon.Visible = $true
-#$Main_Tool_Icon.ShowBalloonTip(500)
+$Main_Tool_Icon.BalloonTipTitle = "Started !"
+$Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
+$Main_Tool_Icon.BalloonTipText = "The puter is now prevented from going to sleep"
+$Main_Tool_Icon.Visible = $true
+$Main_Tool_Icon.ShowBalloonTip(500)
 
 
 
