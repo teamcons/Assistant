@@ -96,16 +96,16 @@ function Stop-Tree {
 
 
 
-# Load everything we need
-Import-Module $ScriptPath\sources\UI.ps1
-
-
 # Start the subprocesses
 # The hotcorner ones cant be jobs. Keepawake can but oh well
 $keepawakeID = (Start-Process $ScriptPath\functionalities\keepawake.exe -passthru).ID
 $hotcorner_topleft_ID = (Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe -passthru).ID
 $hotcorner_winbutton_ID = (Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe -passthru).ID
 
+
+
+# Load everything we need
+Import-Module $ScriptPath\sources\UI.ps1
 
 
 

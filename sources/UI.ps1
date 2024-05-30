@@ -35,14 +35,7 @@ $Main_Tool_Icon.Add_Click({
 $Menu_About = New-Object System.Windows.Forms.MenuItem
 $Menu_About.Text = "About"
 $Menu_About.add_Click({
-    $Main_Tool_Icon.BalloonTipTitle = "Keep puter awake!"
-    $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-    $Main_Tool_Icon.BalloonTipText = "Made by Stella ! :3 <stella.menier@gmx.de>"
-    $Main_Tool_Icon.Visible = $true
-    $Main_Tool_Icon.ShowBalloonTip(1000)
-
     Start-Process "https://github.com/teamcons/EnergyDrink"
-
  })
 
 
@@ -54,16 +47,19 @@ $Menu_About.add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_HC = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HC.Checked = $true
-$Menu_Toggle_HC.Text = "Hot corner (Top left)"
+$Menu_Toggle_HC.Text = "Hot corner (Top left overview)"
 $Menu_Toggle_HC.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_HC.Checked) {
-        Stop-Process -Id $hotcorner_topleft_ID
+        #Stop-Process -Id $hotcorner_topleft_ID
+        Stop-Process -Name hotcorner_topleft
         $Menu_Toggle_HC.Checked = $false}
     else {
-        $hotcorner_topleft_ID = (Start-Process $ScriptPath\hotcorner_topleft.exe -passthru).ID
-        $Menu_Toggle_HC.Checked = $true}
+        $hotcorner_topleft_ID = (Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe -passthru).ID
+        $Menu_Toggle_HC.Checked = $true
+    
+        $hotcorner_topleft_ID}
  })
 
 
@@ -76,16 +72,19 @@ $Menu_Toggle_HC.Add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_HC_Meta = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HC_Meta.Checked = $true
-$Menu_Toggle_HC_Meta.Text = "Hot corner (Top left)"
+$Menu_Toggle_HC_Meta.Text = "Hot corner (Windows button)"
 $Menu_Toggle_HC_Meta.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_HC_Meta.Checked) {
-        Stop-Process -Id $hotcorner_winbutton_ID
+        #Stop-Process -Id $hotcorner_winbutton_ID
+        Stop-Process -Name hotcorner_winbutton
         $Menu_Toggle_HC_Meta.Checked = $false}
     else {
-        $hotcorner_winbutton_ID = (Start-Process $ScriptPath\hotcorner_winbutton.exe -passthru).ID
+        $hotcorner_winbutton_ID = (Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe -passthru).ID
         $Menu_Toggle_HC_Meta.Checked = $true}
+
+
  })
 
 
@@ -105,11 +104,12 @@ $Menu_Toggle_KA.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_KA.Checked) {
-        Stop-Process -Id $keepawakeID
+        #Stop-Process -Id $keepawakeID
+        Stop-Process -Name keepawake
         $Menu_Toggle_KA.Checked = $false
         $Main_Tool_Icon.Icon = $icondark }
     else {
-        $keepawakeID = (Start-Process $ScriptPath\keepawake.exe -passthru).ID
+        $keepawakeID = (Start-Process $ScriptPath\functionalities\keepawake.exe -passthru).ID
         $Menu_Toggle_KA.Checked = $true
         $Main_Tool_Icon.Icon = $icon }
  })
@@ -140,9 +140,14 @@ $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
 
     # Stop all
-    Stop-Process -Id $hotcorner_topleft_ID
-    Stop-Process -Id $hotcorner_winbutton_ID
-    Stop-Process -Id $keepawakeID
+    #Stop-Process -Id $hotcorner_topleft_ID
+    #Stop-Process -Id $hotcorner_winbutton_ID
+    #Stop-Process -Id $keepawakeID
+
+    Stop-Process -Name hotcorner_topleft
+    Stop-Process -Name hotcorner_winbutton
+    Stop-Process -Name keepawake
+
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();
     $appContext.Dispose();

@@ -16,7 +16,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
 [int]$hotcorner_reactivity              = 500   # In milliseconds - How often to check mouse location.
 [byte]$hotcorner_sensitivity            = 50    # In pixels - Size of hot corner area
-[byte]$keypress_waittime                = 2     # In seconds - How long before rearming hot corner
+[byte]$keypress_waittime                = 5     # In seconds - How long before rearming hot corner
 
 # Calculate positions of the hot corner area
 [int]$Bottom = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
