@@ -100,15 +100,6 @@ Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
 # ---------------------------------------------------------------------
 
 
-# Send a keypress, then sleep five minutes
-$keepAwakeScript = {
-    while ($true) {
-        [System.Windows.Forms.SendKeys]::SendWait('+{F15}')
-        Start-Sleep -seconds ($keypress_waittime * 60)
-    }
-}
-
-
 # Check where mouse, if corner then simulate keypress
 $hotcornerScript = {
     while ($true) {
@@ -123,6 +114,7 @@ $hotcornerScript = {
             [KeySends.KeySend]::KeyDown("Tab")
             [KeySends.KeySend]::KeyUp("LWin")
             [KeySends.KeySend]::KeyUp("Tab")
+            Start-Sleep -Milliseconds $hotcorner_reactivity
         }
         
         Start-Sleep -Milliseconds $hotcorner_reactivity
@@ -165,6 +157,9 @@ $Menu_About.add_Click({
     $Main_Tool_Icon.BalloonTipText = "Made by Stella ! :3 <stella.menier@gmx.de>"
     $Main_Tool_Icon.Visible = $true
     $Main_Tool_Icon.ShowBalloonTip(1000)
+
+    Start-Process "https://github.com/teamcons/EnergyDrink"
+
  })
 
 
@@ -172,18 +167,16 @@ $Menu_About.add_Click({
 
 # Toggle between halt and continue
 $Menu_Toggle_HC = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_HC.Checked = $false
+$Menu_Toggle_HC.Checked = $true
 $Menu_Toggle_HC.Text = "Hot corner (Top left)"
 $Menu_Toggle_HC.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_HC.Checked) {
-        #Stop-Job -Name "hotCorner"
-        Stop-Process -Name warmedge
+        Stop-Process -Id $hotcornerID
         $Menu_Toggle_HC.Checked = $false}
     else {
-        #Start-Job -ScriptBlock $hotcornerScript -Name "hotCorner"
-        Start-Process $ScriptPath\warmedge.exe
+        $hotcornerID = (Start-Process $ScriptPath\warmedge.exe -passthru).ID
         $Menu_Toggle_HC.Checked = $true}
  })
 
@@ -196,21 +189,29 @@ $Menu_Toggle_KA.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_KA.Checked) {
-        Stop-Job -Name "keepAwake"
+        Stop-Process -Id $keepawakeID
         $Menu_Toggle_KA.Checked = $false
         $Main_Tool_Icon.Icon = $icondark }
     else {
-        Start-Job -ScriptBlock $keepAwakeScript -Name "keepAwake"
+        $keepawakeID = (Start-Process $ScriptPath\keepawake.exe -passthru).ID
         $Menu_Toggle_KA.Checked = $true
         $Main_Tool_Icon.Icon = $icon }
  })
 
+
+
+
+
+ 
 # Stop everything
 $Menu_Exit = New-Object System.Windows.Forms.MenuItem
 $Menu_Exit.Text = "Close app"
 $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
-    Stop-Job -Name "keepAwake"
+
+    # Stop all
+    Stop-Process -Id $hotcornerID
+    Stop-Process -Id $keepawakeID
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();
     $appContext.Dispose();
@@ -229,16 +230,19 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
 # ---------------------------------------------------------------------
 
-$Main_Tool_Icon.BalloonTipTitle = "Started !"
-$Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-$Main_Tool_Icon.BalloonTipText = "The puter is now prevented from going to sleep"
-$Main_Tool_Icon.Visible = $true
-$Main_Tool_Icon.ShowBalloonTip(500)
+#$Main_Tool_Icon.BalloonTipTitle = "Started !"
+#$Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
+#$Main_Tool_Icon.BalloonTipText = "The puter is now prevented from going to sleep"
+#$Main_Tool_Icon.Visible = $true
+#$Main_Tool_Icon.ShowBalloonTip(500)
 
-Start-Job -ScriptBlock $keepAwakeScript -Name "keepAwake"
 
-# BUGFIX: The whole thing doesnt work if in the background
-#Start-Job -ScriptBlock $hotcornerScript -Name "hotCorner"
+
+
+$keepawakeID = (Start-Process $ScriptPath\keepawake.exe -passthru).ID
+$hotcornerID = (Start-Process $ScriptPath\warmedge.exe -passthru).ID
+
+
 
 
 

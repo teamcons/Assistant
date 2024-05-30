@@ -28,7 +28,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
 
 
-# This is very ugly
+# This is very ugly, but we cannot send "Meta + Tab" otherwise
 #https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
 $source = @"
 using System;
@@ -56,18 +56,26 @@ namespace KeySends
 "@
 Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
 
-while ($true) {
+
+
+# Test forever
+while ($true)
+{
 
     #[Windows.Forms.Cursor]::Position
-    # If in the corner
-    if ( ([Windows.Forms.Cursor]::Position.X -le $hotcorner_sensitivity) -and ([Windows.Forms.Cursor]::Position.Y -le $hotcorner_sensitivity))
+    # If in the corner. We test for a range, because monitors on the left have negative X, monitors on top negative Y
+    # "0" is the absolute corner of main screen.
+    if (([Windows.Forms.Cursor]::Position.X -In 0..$hotcorner_sensitivity) -and
+        ([Windows.Forms.Cursor]::Position.Y -In 0..$hotcorner_sensitivity))
     {
         # Trigger Windows + Tab (Overview)
         Write-Output "[HOT CORNER] Activated!"
+        #[Windows.Forms.Cursor]::Position
         [KeySends.KeySend]::KeyDown("LWin")
         [KeySends.KeySend]::KeyDown("Tab")
         [KeySends.KeySend]::KeyUp("LWin")
         [KeySends.KeySend]::KeyUp("Tab")
+        Start-Sleep -Milliseconds $hotcorner_reactivity
     }
     
     Start-Sleep -Milliseconds $hotcorner_reactivity
