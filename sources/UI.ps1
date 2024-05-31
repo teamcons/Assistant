@@ -174,6 +174,7 @@ $timer = {
     $Main_Tool_Icon.BalloonTipText = "Wake up!"
     $Main_Tool_Icon.Visible = $true
     $Main_Tool_Icon.ShowBalloonTip(500)
+    $Menu_Toggle_Timer.Checked = $false
 }
 
 
