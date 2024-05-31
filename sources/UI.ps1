@@ -179,7 +179,7 @@ $timer = {
 
 # Toggle between halt and continue
 $Menu_Toggle_Timer = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_Timer.Text = -join("Notify me in",$settings.Timer.Duration,"mn")
+$Menu_Toggle_Timer.Text = -join("Notify me in ",$settings.Timer.Duration,"mn")
 $Menu_Toggle_Timer.Checked = $false
 $Menu_Toggle_Timer.Add_Click({
     # If it was checked when clicked, stop time
