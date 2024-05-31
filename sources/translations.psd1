@@ -1,3 +1,4 @@
+
 @{
 
 
@@ -17,12 +18,5 @@
         Enabled             = $true
     }
 
-    Clipboard       = @{
-        ItemsRemembered     = 4       # In minutes. Time before notification
-    }
-
-    Timer       = @{
-        Duration             = 30       # In minutes. Time before notification
-    }
 
 }

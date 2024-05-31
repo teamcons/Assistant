@@ -53,7 +53,7 @@ $Main_Tool_Icon.Add_Click({
 
 # About in notification bubble
 $Menu_About = New-Object System.Windows.Forms.MenuItem
-$Menu_About.Text = "About this + doc"
+$Menu_About.Text = "About Assistant + doc"
 $Menu_About.add_Click({
     Start-Process "https://github.com/teamcons/Assistant"
  })
@@ -76,7 +76,7 @@ $Menu_Toggle_HotCorner_TopLeft.Add_Click({
         Stop-Process -Name hotcorner_topleft
         $Menu_Toggle_HotCorner_TopLeft.Checked = $false}
     else {
-        $hotcorner_topleft_ID = (Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe -passthru).ID
+        Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe
         $Menu_Toggle_HotCorner_TopLeft.Checked = $true
     
         $hotcorner_topleft_ID}
@@ -97,11 +97,10 @@ $Menu_Toggle_HotCorner_WinButton.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
     if ($Menu_Toggle_HotCorner_WinButton.Checked) {
-        #Stop-Process -Id $hotcorner_winbutton_ID
         Stop-Process -Name hotcorner_winbutton
         $Menu_Toggle_HotCorner_WinButton.Checked = $false}
     else {
-        $hotcorner_winbutton_ID = (Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe -passthru).ID
+        Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe
         $Menu_Toggle_HotCorner_WinButton.Checked = $true}
 
 
@@ -120,8 +119,6 @@ $Menu_Toggle_HotCorner_WinButton.Add_Click({
 $Menu_Toggle_KeepAwake = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_KeepAwake.Checked = $true
 $Menu_Toggle_KeepAwake.Text = "Keep puter awake"
-
-
 $Menu_Toggle_KeepAwake.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -131,7 +128,7 @@ $Menu_Toggle_KeepAwake.Add_Click({
         $Menu_Toggle_KeepAwake.Checked = $false
         $Main_Tool_Icon.Icon = $icondark }
     else {
-        $keepawakeID = (Start-Process $ScriptPath\functionalities\keepawake.exe -passthru).ID
+        Start-Process $ScriptPath\functionalities\keepawake.exe
         $Menu_Toggle_KeepAwake.Checked = $true
         $Main_Tool_Icon.Icon = $icon }
  })
@@ -169,7 +166,40 @@ $Menu_Toggle_Autostart.Add_Click({
 # Part - ELSE
 # ----------------------------------------------------        
 
+# Timer
+$timer = {
+    Start-Sleep -seconds ($settings.Timer.Duration * 60)
+    $Main_Tool_Icon.BalloonTipTitle = "Hey!"
+    $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
+    $Main_Tool_Icon.BalloonTipText = "Wake up!"
+    $Main_Tool_Icon.Visible = $true
+    $Main_Tool_Icon.ShowBalloonTip(500)
+}
+
+
+# Toggle between halt and continue
+$Menu_Toggle_Timer = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_Timer.Text = -join("Notify me in",$settings.Timer.Duration,"mn")
+$Menu_Toggle_Timer.Checked = $false
+$Menu_Toggle_Timer.Add_Click({
+    # If it was checked when clicked, stop time
+    # Else, it wasnt checked, so start timer
+    if ($Menu_Toggle_Timer.Checked) {
+        Stop-Job -ScriptBlock $timer -Name "timer"
+        $Menu_Toggle_Timer.Checked = $false}
+    else {
+        Start-Job -ScriptBlock $timer -Name "timer"
+        $Menu_Toggle_Timer.Checked = $true}
+ })
  
+
+
+
+# ----------------------------------------------------
+# Part - ELSE
+# ----------------------------------------------------        
+
+
 # Stop everything
 $Menu_Exit = New-Object System.Windows.Forms.MenuItem
 $Menu_Exit.Text = "Quit Assistant"
@@ -190,7 +220,9 @@ $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_About)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_TopLeft)
-#$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
+$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Timer)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KeepAwake)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Autostart)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
