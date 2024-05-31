@@ -146,14 +146,10 @@ $autostart = -join($env:APPDATA,"\Microsoft\Windows\Start Menu\Programs\Startup"
 $WshShell = New-Object -ComObject WScript.Shell
 
 
-# Detect whether autostart is there
-$Menu_Toggle_Autostart = (Test-Path $autostart\Assistant.lnk)
-
-
-
 # Toggle between halt and continue
 $Menu_Toggle_Autostart = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_Autostart.Text = "Autostart"
+$Menu_Toggle_Autostart.Checked = (Test-Path $autostart\Assistant.lnk)
 $Menu_Toggle_Autostart.Add_Click({
     # If it was checked when clicked, delete autostart shortcut
     # Else, it wasnt checked, so create autostart shortcut
@@ -162,7 +158,8 @@ $Menu_Toggle_Autostart.Add_Click({
         $Menu_Toggle_Autostart.Checked = $false}
     else {
         $Shortcut = $WshShell.CreateShortcut( -join($autostart,"\Assistant.lnk"))
-        $Shortcut.TargetPath = -join($ScriptPath,"\Assistant.exe")
+        $Shortcut.IconLocation = (-join($ScriptPath,"\assets\soft-drink.ico"))
+        $Shortcut.TargetPath = (-join($ScriptPath,"\Assistant.exe"))
         $Shortcut.Save()
         $Menu_Toggle_Autostart.Checked = $true }
  })
