@@ -25,14 +25,15 @@ else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
+# Read the file
+$settings = Import-LocalizedData -FileName settings.psd1
 
 # Load everything we need
 Import-Module $ScriptPath\sources\UI.ps1
 Import-Module $ScriptPath\sources\utils.ps1
 
 
-# Read the file
-$settings = Import-LocalizedData -FileName settings.psd1
+
 
 # Start the subprocesses
 if ($settings.TopLeftOverview.Enabled)

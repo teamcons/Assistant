@@ -185,7 +185,7 @@ $Menu_Toggle_Timer.Add_Click({
     # If it was checked when clicked, stop time
     # Else, it wasnt checked, so start timer
     if ($Menu_Toggle_Timer.Checked) {
-        Stop-Job -ScriptBlock $timer -Name "timer"
+        Stop-Job -Name "timer"
         $Menu_Toggle_Timer.Checked = $false}
     else {
         Start-Job -ScriptBlock $timer -Name "timer"
