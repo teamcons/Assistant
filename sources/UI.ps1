@@ -188,10 +188,12 @@ $Menu_Exit.add_Click({
 
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_About)
+$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_TopLeft)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
+#$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KeepAwake)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Autostart)
+$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
  
