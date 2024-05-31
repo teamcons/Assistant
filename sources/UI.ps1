@@ -40,7 +40,7 @@ $icondark = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($str
 
 # Display an icon in tray
 $Main_Tool_Icon = New-Object System.Windows.Forms.NotifyIcon
-$Main_Tool_Icon.Text = "EnergyDrink"
+$Main_Tool_Icon.Text = "Assistant"
 $Main_Tool_Icon.Icon = $icon
 $Main_Tool_Icon.Visible = $true
 $Main_Tool_Icon.Add_Click({                    
@@ -53,9 +53,9 @@ $Main_Tool_Icon.Add_Click({
 
 # About in notification bubble
 $Menu_About = New-Object System.Windows.Forms.MenuItem
-$Menu_About.Text = "About"
+$Menu_About.Text = "About this + doc"
 $Menu_About.add_Click({
-    Start-Process "https://github.com/teamcons/EnergyDrink"
+    Start-Process "https://github.com/teamcons/Assistant"
  })
 
 

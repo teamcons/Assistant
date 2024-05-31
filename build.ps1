@@ -23,7 +23,7 @@ ps2exe `
 -Verbose `
 -outputFile $ScriptPath\Assistant.exe
  #>
-
+<# 
 #========================
 # ENERGYDRINK
 #<# 
@@ -69,4 +69,4 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\functionalities\keepawake.exe
+-outputFile $ScriptPath\functionalities\keepawake.exe #>
