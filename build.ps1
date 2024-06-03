@@ -23,17 +23,17 @@ ps2exe `
 -Verbose `
 -outputFile $ScriptPath\Assistant.exe
  #>
-<# 
+
 #========================
 # ENERGYDRINK
-#<# 
+
 ps2exe `
 -inputFile $ScriptPath\functionalities\hotcorner_topleft.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
--title "Warm edge" `
+-title "Hotcorner topleft" `
 -description "Top left hot corner" `
 -company "teamcons" `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
@@ -41,7 +41,7 @@ ps2exe `
 -Verbose `
 -outputFile $ScriptPath\functionalities\hotcorner_topleft.exe
 
-
+<# 
 ps2exe `
 -inputFile $ScriptPath\functionalities\hotcorner_winbutton.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
@@ -69,4 +69,4 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\functionalities\keepawake.exe #>
+-outputFile $ScriptPath\functionalities\keepawake.exe #> #>

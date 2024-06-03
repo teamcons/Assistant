@@ -3,7 +3,7 @@
 
     TopLeftOverview = @{
         Enabled             = $true
-        reactivity          = 500
+        reactivity          = 400
         sensitivity         = 30
     }
 
@@ -18,7 +18,9 @@
     }
 
     Clipboard       = @{
-        ItemsRemembered     = 4       # In minutes. Time before notification
+        Enabled             = $true
+        reactivity          = 1000      # In milliseconds. Time to check for cliboard content
+        remembereditems     = 5       # How many entries to keep
     }
 
     Timer       = @{
