@@ -107,5 +107,8 @@ while ($true)
 
 
     # Wait before rechecking again.
+    # Else we just burn the cpu
     Start-Sleep -Milliseconds $hotcorner_reactivity
-}
+
+
+} # End of testing forever without end
