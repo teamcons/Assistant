@@ -26,6 +26,7 @@ else
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
 # Read the file
+Set-Location -Path $ScriptPath
 $settings = Import-LocalizedData -FileName settings.psd1
 
 # Load everything we need

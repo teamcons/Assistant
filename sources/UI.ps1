@@ -225,7 +225,7 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 #$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Timer)
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KeepAwake)
-#$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Autostart)
+$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Autostart)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
