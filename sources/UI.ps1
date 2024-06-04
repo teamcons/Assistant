@@ -53,7 +53,7 @@ $Main_Tool_Icon.Add_Click({
 
 # About in notification bubble
 $Menu_About = New-Object System.Windows.Forms.MenuItem
-$Menu_About.Text = "About Assistant + doc"
+$Menu_About.Text = "About Assistant"
 $Menu_About.add_Click({
     Start-Process "https://github.com/teamcons/Assistant"
  })
@@ -67,7 +67,7 @@ $Menu_About.add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_TopLeft = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HotCorner_TopLeft.Checked = $true
-$Menu_Toggle_HotCorner_TopLeft.Text = "Top left edge triggers overview"
+$Menu_Toggle_HotCorner_TopLeft.Text = "Hit top left edge for overview"
 $Menu_Toggle_HotCorner_TopLeft.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -92,7 +92,7 @@ $Menu_Toggle_HotCorner_TopLeft.Add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_WinButton = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HotCorner_WinButton.Checked = $false
-$Menu_Toggle_HotCorner_WinButton.Text = "Open windows start menu if hovered"
+$Menu_Toggle_HotCorner_WinButton.Text = "Hover start menu to open"
 $Menu_Toggle_HotCorner_WinButton.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -145,7 +145,7 @@ $WshShell = New-Object -ComObject WScript.Shell
 
 # Toggle between halt and continue
 $Menu_Toggle_Autostart = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_Autostart.Text = "Start with puter"
+$Menu_Toggle_Autostart.Text = "Start Assistant with puter"
 $Menu_Toggle_Autostart.Checked = (Test-Path $autostart\Assistant.lnk)
 $Menu_Toggle_Autostart.Add_Click({
     # If it was checked when clicked, delete autostart shortcut
