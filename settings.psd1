@@ -19,7 +19,7 @@
 
     Clipboard       = @{
         Enabled             = $true
-        reactivity          = 3000      # In milliseconds. Time to check for cliboard content
+        reactivity          = 2000      # In milliseconds. Time to check for clipboard content
         remembereditems     = 5       # How many entries to keep
     }
 

@@ -42,46 +42,50 @@ $quit = {
 
 function clipboard_watch {
 
-
-
-    # Initial
+    # We save every clipboard entry in this
     $clipboard_saved = New-Object System.Collections.Generic.List[string]
+
+    # Initialize UI and list to save clipboard in
     for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
-        $clipboard_saved.Add($i)
+        $clipboard_saved.Add((-join "Entry ",$i))
         $Submenu_clipboard.MenuItems.Add($i)
     }
+    # FIXME: Find a way to do this programmatically (dynamic scriptblocks or something)
+    # FIXME: Wrong pasted
+    $Submenu_clipboard.MenuItems[0].Add_Click({Set-Clipboard $clipboard_saved[0]})
+    $Submenu_clipboard.MenuItems[1].Add_Click({Set-Clipboard $clipboard_saved[1]})
+    $Submenu_clipboard.MenuItems[2].Add_Click({Set-Clipboard $clipboard_saved[2]})
+    $Submenu_clipboard.MenuItems[3].Add_Click({Set-Clipboard $clipboard_saved[3]})
+    $Submenu_clipboard.MenuItems[4].Add_Click({Set-Clipboard $clipboard_saved[4]})
+
+
+
     
     # The test is Forever
     while ($true)
     {
 
-        echo f
-        $clipboard_saved
+        # Retrieve clipboard content
+        $clipboard_now = Get-Clipboard -Raw
 
-
-        $clipboard_now = (Get-Clipboard).ToString()
 
         # If in the corner. We test for a range, because monitors on the left have negative X, monitors on top negative Y
         # "0" is the absolute corner of main screen.
         if ($clipboard_now -ne $clipboard_saved[0] )
         {
-            echo NEWCYCLE
-            $clipboard_now
-            $clipboard_saved[0]
-
-            echo f
-            echo f
-
             # Add as first element to the list
             # Trim the last out to stay at same number
-            $clipboard_saved.Insert(0,$clipboard_now)
-            $clipboard_saved.remove($clipboard_saved[-1])
+            [void]$clipboard_saved.Insert(0,$clipboard_now)
+            [void]$clipboard_saved.remove($clipboard_saved[-1])
 
             # Regen all items
             for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
-                $Submenu_clipboard.MenuItems[$i].Text = ($clipboard_saved[$i].ToString())[0..20]
-                $Submenu_clipboard.MenuItems[$i].Add_Click({Set-Clipboard $clipboard_saved[$i]})
+                $Submenu_clipboard.MenuItems[$i].Text = ($clipboard_saved[$i])[0..20] -join ""
             }
+
+            echo "NEWCYCLE"
+            $clipboard_saved
+            echo ""
 
         } # End of if copied new
 

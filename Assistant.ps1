@@ -41,8 +41,6 @@ Import-Module $ScriptPath\sources\UI.ps1
 
 
 
-
-
 # Start the subprocesses
 if ($settings.TopLeftOverview.Enabled)
 {
@@ -62,12 +60,12 @@ if ($settings.KeepAwake.Enabled)
 
 
 
+if ($settings.Clipboard.Enabled)
+{
+    clipboard_watch
+    #Start-Job -ScriptBlock $clipboard_watch -Name Clipboard
+}
 
-#clipboard_watch
-
-
-
-#Start-Job -ScriptBlock $clipboard_watch -Name Clipboard
 
 # Tell user we started
 $Main_Tool_Icon.BalloonTipTitle = "Started !"
