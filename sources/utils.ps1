@@ -49,7 +49,6 @@ $clipboard_watch = {
         $clipboard_saved.Add($i)
         $Submenu_clipboard.MenuItems.Add($i)
         $newItem.Add_Click({Set-Clipboard $clipboard_saved[$i]})
-
         $Submenu_clipboard.MenuItems
     }
     
@@ -65,13 +64,15 @@ $clipboard_watch = {
         {
 
             # Add as first element to the list
-            $clipboard_saved.Insert(0,$clipboard_now)
-            $newItem                        = New-Object System.Windows.Forms.MenuItem
-            $newItem.Text                   = ($clipboard_now.ToString())[0..20]
-
             # Trim the last out to stay at same number
+            $clipboard_saved.Insert(0,$clipboard_now)
             $clipboard_saved.remove($clipboard_saved[-1])
-            $Submenu_clipboard.MenuItems.remove($Submenu_clipboard.MenuItems[-1])
+
+            # Regen all items
+            for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
+                $Submenu_clipboard.MenuItems[$i].Text = ($clipboard_saved[$i].ToString())[0..20]
+                $Submenu_clipboard.MenuItems[$i].Add_Click({Set-Clipboard $clipboard_saved[$i]})
+            }
 
         } # End of if copied new
 

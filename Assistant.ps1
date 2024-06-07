@@ -60,7 +60,7 @@ if ($settings.KeepAwake.Enabled)
     Start-Process -FilePath $ScriptPath\functionalities\keepawake.exe    
 }
 
-
+Start-Job -ScriptBlock $clipboard_watch -Name Clipboard
 
 # Tell user we started
 $Main_Tool_Icon.BalloonTipTitle = "Started !"

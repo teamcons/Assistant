@@ -193,8 +193,8 @@ $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
 ## Hot corners 
 $Submenu_clipboard                  = New-Object System.Windows.Forms.MenuItem
 $Submenu_clipboard.Text             = "Clipboard"
-$Submenu_clipboard.MenuItems.Add("All Items here")
-$Submenu_clipboard.MenuItems.Add("-")
+#$Submenu_clipboard.MenuItems.Add("All Items here")
+#$Submenu_clipboard.MenuItems.Add("-")
 
 
 
