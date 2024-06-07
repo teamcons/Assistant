@@ -25,13 +25,20 @@ else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
-# Read the file
+# When executed at windows start, location is not in the script folder
 Set-Location -Path $ScriptPath
+
+
+# Read the file
 $settings = Import-LocalizedData -FileName settings.psd1
 
+
+
 # Load everything we need
-Import-Module $ScriptPath\sources\UI.ps1
+Import-Module $ScriptPath\sources\text.ps1
 Import-Module $ScriptPath\sources\utils.ps1
+Import-Module $ScriptPath\sources\UI.ps1
+
 
 
 
