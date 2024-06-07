@@ -70,6 +70,13 @@ while ($true)
     
 
 
-    # Wait before rechecking again.
-    Start-Sleep -Milliseconds $hotcorner_reactivity
+    # If not in the corner, wait.
+    # This could be without "else", with the effect for the hot corner to be slightly less reactive just after rearming
+    else {
+        # Wait before rechecking again.
+        # Else we'd just burn the cpu checking constantly
+        Start-Sleep -Milliseconds $hotcorner_reactivity
+    }
+
+
 }

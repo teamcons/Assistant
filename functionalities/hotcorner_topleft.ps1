@@ -75,7 +75,6 @@ Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
 while ($true)
 {
 
-    #[Windows.Forms.Cursor]::Position
     # If in the corner. We test for a range, because monitors on the left have negative X, monitors on top negative Y
     # "0" is the absolute corner of main screen.
     if (([Windows.Forms.Cursor]::Position.X -In 0..$hotcorner_sensitivity) -and
@@ -105,10 +104,15 @@ while ($true)
     } # End of if hits the corner
 
 
+    # If not in the corner, wait.
+    # This could be without "else", with the effect for the hot corner to be slightly less reactive just after rearming
+    else {
+            # Wait before rechecking again.
+            # Else we'd just burn the cpu checking constantly
+            Start-Sleep -Milliseconds $hotcorner_reactivity
+    }
 
-    # Wait before rechecking again.
-    # Else we just burn the cpu
-    Start-Sleep -Milliseconds $hotcorner_reactivity
+
 
 
 } # End of testing forever without end
