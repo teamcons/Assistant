@@ -4,24 +4,46 @@
 
 ### All the stuff
 
-Done
--Keep awake
--Hot corner top left : Overview
--Hot corner: Hover meta
--Has settings
+A small utility which offers several functions lacking for windows
 
-Todo
--Autostart (is broken)
--Clipboard manager
--Save settings
+### Done
+- Keep awake: Toggle between preventing computer to go to sleep or not
+- Hot corner top left : Hitting the top left edge triggers an overview
+- Hot corner hover meta : Hitting the botton left (windows logo) opens the start menu
+- Autostart : Start Assistant with Windows
 
 
+### Todo
+- Clipboard manager: Save the last X items in clipboard
+- Clipboard manager: Use several items from clipboard by pasting in quick succession
+- Timer ? Ask to have a notification after X time
+- Localization ?
 
 
   <table align="center" border="none">
       <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png"" /></td>
-      <td><p>
 </table>
+
+
+# Documentation
+
+### Hot corner: Top left
+The program constantly checks whether the mouse is in the top left
+Simulate Meta + D
+
+### Hot corner: Hover meta
+
+The program constantly checks whether the mouse is in the bottom
+Simulates Meta
+
+### Keep awake
+
+The computer is prevented to go to sleep by simulating a keypress on F15.
+This key shouldnt be used by any program nor appear on the keyboard but... If there is weird behavior it could come from here.
+
+
+
+
 
 # Acknowledgments
 
