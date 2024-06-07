@@ -217,18 +217,31 @@ $Menu_Exit.add_Click({
     $appContext.Dispose();
  })
 
+
+## Hot corners 
+$Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
+$Submenu_hotcorner.Text             = "Hot corners"
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
+
+## Hot corners 
+$Submenu_clipboard                  = New-Object System.Windows.Forms.MenuItem
+$Submenu_clipboard.Text             = "Clipboard"
+$Submenu_clipboard.MenuItems.Add("All Items here")
+
+
+# All
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_About)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_TopLeft)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_HotCorner_WinButton)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 #$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Timer)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_KeepAwake)
-$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Autostart)
-$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)
+#$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_Autostart)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Exit)
 
- 
 
 # ---------------------------------------------------------------------
