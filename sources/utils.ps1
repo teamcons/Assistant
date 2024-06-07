@@ -40,28 +40,37 @@ $quit = {
  }
 
 
+function clipboard_watch {
 
-$clipboard_watch = {
 
-    $clipboard_saved = new-object 'System.Collections.Generic.List[string]'
 
+    # Initial
+    $clipboard_saved = New-Object System.Collections.Generic.List[string]
     for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
         $clipboard_saved.Add($i)
         $Submenu_clipboard.MenuItems.Add($i)
-        $newItem.Add_Click({Set-Clipboard $clipboard_saved[$i]})
-        $Submenu_clipboard.MenuItems
     }
     
     # The test is Forever
     while ($true)
     {
 
-        $clipboard_now = Get-Clipboard
+        echo f
+        $clipboard_saved
+
+
+        $clipboard_now = (Get-Clipboard).ToString()
 
         # If in the corner. We test for a range, because monitors on the left have negative X, monitors on top negative Y
         # "0" is the absolute corner of main screen.
-        if ($clipboard_now -isnot $clipboard_saved[0] )
+        if ($clipboard_now -ne $clipboard_saved[0] )
         {
+            echo NEWCYCLE
+            $clipboard_now
+            $clipboard_saved[0]
+
+            echo f
+            echo f
 
             # Add as first element to the list
             # Trim the last out to stay at same number
@@ -76,7 +85,7 @@ $clipboard_watch = {
 
         } # End of if copied new
 
-        Start-Sleep -Seconds $settings.Clipboard.reactivity
+        Start-Sleep -Milliseconds $settings.Clipboard.reactivity
     } # End of testing forever without end
 }
 

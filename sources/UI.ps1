@@ -185,7 +185,7 @@ $Menu_Exit.add_Click($quit)
 
 
 ## Hot corners 
-$Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
+$script:Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
 $Submenu_hotcorner.Text             = "Hot corners"
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
