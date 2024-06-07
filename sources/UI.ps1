@@ -196,10 +196,10 @@ $Submenu_clipboard.Text             = "Clipboard"
 $Submenu_clipboard.MenuItems.Add("All Items here")
 $Submenu_clipboard.MenuItems.Add("-")
 
+
+
+
 #$Submenu_clipboard.Add_Select({})
-for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
-    $Submenu_clipboard.MenuItems.Add($i)
-}
 
 
 # All

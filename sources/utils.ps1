@@ -43,28 +43,39 @@ $quit = {
 
 $clipboard_watch = {
 
+    $clipboard_saved = new-object 'System.Collections.Generic.List[string]'
+
+    for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
+        $clipboard_saved.Add($i)
+        $Submenu_clipboard.MenuItems.Add($i)
+        $newItem.Add_Click({Set-Clipboard $clipboard_saved[$i]})
+
+        $Submenu_clipboard.MenuItems
+    }
+    
     # The test is Forever
     while ($true)
     {
 
+        $clipboard_now = Get-Clipboard
+
         # If in the corner. We test for a range, because monitors on the left have negative X, monitors on top negative Y
         # "0" is the absolute corner of main screen.
-        if (([Windows.Forms.Cursor]::Position.X -In 0..$hotcorner_sensitivity) -and
-            ([Windows.Forms.Cursor]::Position.Y -In 0..$hotcorner_sensitivity))
+        if ($clipboard_now -isnot $clipboard_saved[0] )
         {
 
-            
+            # Add as first element to the list
+            $clipboard_saved.Insert(0,$clipboard_now)
+            $newItem                        = New-Object System.Windows.Forms.MenuItem
+            $newItem.Text                   = ($clipboard_now.ToString())[0..20]
 
+            # Trim the last out to stay at same number
+            $clipboard_saved.remove($clipboard_saved[-1])
+            $Submenu_clipboard.MenuItems.remove($Submenu_clipboard.MenuItems[-1])
 
-        } # End of if hits the corner
+        } # End of if copied new
 
-
-        
-    Start-Sleep -Seconds $settings.Clipboard.reactivity
-
-
-
-
+        Start-Sleep -Seconds $settings.Clipboard.reactivity
     } # End of testing forever without end
 }
 
