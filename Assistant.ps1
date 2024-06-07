@@ -60,12 +60,12 @@ if ($settings.KeepAwake.Enabled)
 
 
 
-if ($settings.Clipboard.Enabled)
+<# if ($settings.Clipboard.Enabled)
 {
     #clipboard_watch
     #Start-Job -ScriptBlock $clipboard_watch -Name Clipboard
 }
-
+ #>
 
 # Tell user we started
 $Main_Tool_Icon.BalloonTipTitle = "Started !"

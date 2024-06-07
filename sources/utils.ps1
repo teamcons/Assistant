@@ -40,6 +40,8 @@ $quit = {
  }
 
 
+
+ # HMMM ? https://devblogs.microsoft.com/oldnewthing/20230303-00/?p=107894
 function clipboard_watch {
 
     # We save every clipboard entry in this
@@ -58,9 +60,6 @@ function clipboard_watch {
     $Submenu_clipboard.MenuItems[3].Add_Click({Set-Clipboard $clipboard_saved[3]})
     $Submenu_clipboard.MenuItems[4].Add_Click({Set-Clipboard $clipboard_saved[4]})
 
-
-
-    
     # The test is Forever
     while ($true)
     {

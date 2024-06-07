@@ -26,7 +26,7 @@ ps2exe `
 
 #========================
 # ENERGYDRINK
-
+<# 
 #<#
 ps2exe `
 -inputFile $ScriptPath\functionalities\hotcorner_topleft.ps1 `
@@ -43,7 +43,7 @@ ps2exe `
 -outputFile $ScriptPath\functionalities\hotcorner_topleft.exe
  #>
 
-# <# 
+<# 
 ps2exe `
 -inputFile $ScriptPath\functionalities\hotcorner_winbutton.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
@@ -59,7 +59,7 @@ ps2exe `
 -outputFile $ScriptPath\functionalities\hotcorner_winbutton.exe
  #>
 
-
+ #>
  <# 
 ps2exe `
 -inputFile $ScriptPath\functionalities\keepawake.ps1 `
