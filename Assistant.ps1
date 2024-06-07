@@ -62,7 +62,7 @@ if ($settings.KeepAwake.Enabled)
 
 if ($settings.Clipboard.Enabled)
 {
-    clipboard_watch
+    #clipboard_watch
     #Start-Job -ScriptBlock $clipboard_watch -Name Clipboard
 }
 
