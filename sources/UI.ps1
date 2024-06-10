@@ -204,7 +204,7 @@ $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
+#$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 #$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Timer)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)
