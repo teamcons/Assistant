@@ -30,14 +30,14 @@ Set-Location -Path $ScriptPath
 
 
 # Read the file
-$script:settings = Import-LocalizedData -FileName settings.psd1 -BaseDirectory $ScriptPath
+$script:settings = Import-LocalizedData -FileName settings.psd1 -BaseDirectory $ScriptPath\parts
 
 
 
 # Load everything we need
-Import-Module $ScriptPath\sources\text.ps1
-Import-Module $ScriptPath\sources\utils.ps1
-Import-Module $ScriptPath\sources\UI.ps1
+Import-Module $ScriptPath\parts\text.ps1
+Import-Module $ScriptPath\parts\utils.ps1
+Import-Module $ScriptPath\parts\UI.ps1
 
 
 
