@@ -208,7 +208,7 @@ $Submenu_clipboard.Add_Click({[System.Windows.Forms.SendKeys]::SendWait('^{ESC}'
 
 # Simulate Meta+V (Clipboard)
 $Menu_Clipboard = New-Object System.Windows.Forms.MenuItem
-$Menu_Clipboard.Text = "View Clipboard"
+$Menu_Clipboard.Text = "View clipboard"
 $Menu_Clipboard.add_Click({ Write-Output "[Clipboard] Activated!"
     #[Windows.Forms.Cursor]::Position
     [KeySends.KeySend]::KeyDown("LWin")
