@@ -40,7 +40,7 @@ $quit = {
  }
 
 
-
+<# 
  # HMMM ? https://devblogs.microsoft.com/oldnewthing/20230303-00/?p=107894
 function clipboard_watch {
 
@@ -94,3 +94,34 @@ function clipboard_watch {
 
 
 
+ #>
+
+
+
+# This is very ugly
+#https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
+$source = @"
+using System;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+namespace KeySends
+{
+    public class KeySend
+    {
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        private const int KEYEVENTF_EXTENDEDKEY = 1;
+        private const int KEYEVENTF_KEYUP = 2;
+        public static void KeyDown(Keys vKey)
+        {
+            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY, 0);
+        }
+        public static void KeyUp(Keys vKey)
+        {
+            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+        }
+    }
+}
+"@
+Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"

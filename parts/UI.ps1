@@ -42,6 +42,11 @@ $Menu_About.add_Click({
 # ----------------------------------------------------        
 
 
+
+
+
+
+
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_TopLeft = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HotCorner_TopLeft.Checked = $true
@@ -144,7 +149,7 @@ $Menu_Toggle_Autostart.Add_Click({
 # Part - ELSE
 # ----------------------------------------------------        
 
-# Timer
+<# # Timer
 $timer = {
     Start-Sleep -seconds ($settings.Timer.Duration * 60)
     $Main_Tool_Icon.BalloonTipTitle = "Hey!"
@@ -169,8 +174,10 @@ $Menu_Toggle_Timer.Add_Click({
     else {
         Start-Job -ScriptBlock $timer -Name "timer"
         $Menu_Toggle_Timer.Checked = $true}
- })
+ }) #>
  
+
+
 
 
 
@@ -199,15 +206,31 @@ $Submenu_clipboard.Add_Click({[System.Windows.Forms.SendKeys]::SendWait('^{ESC}'
 #$Submenu_clipboard.Add_Select({})
 
 
+# Simulate Meta+V (Clipboard)
+$Menu_Clipboard = New-Object System.Windows.Forms.MenuItem
+$Menu_Clipboard.Text = "View Clipboard"
+$Menu_Clipboard.add_Click({ Write-Output "[Clipboard] Activated!"
+    #[Windows.Forms.Cursor]::Position
+    [KeySends.KeySend]::KeyDown("LWin")
+    [KeySends.KeySend]::KeyDown("V")
+    [KeySends.KeySend]::KeyUp("LWin")
+    [KeySends.KeySend]::KeyUp("V")
+})
+
+
+
+
 # All
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Clipboard)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
 #$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 #$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Timer)
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)
+
 #$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_Autostart)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Exit)
