@@ -68,11 +68,11 @@ if ($settings.KeepAwake.Enabled)
 
 
 # Tell user we started
-$Main_Tool_Icon.BalloonTipTitle = "Started!"
+$Main_Tool_Icon.BalloonTipTitle = $Script:Appname
 $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-$Main_Tool_Icon.BalloonTipText = "Assistant is now sitting in the tray"
+$Main_Tool_Icon.BalloonTipText = $Text_NotifyStart
 $Main_Tool_Icon.Visible = $true
-$Main_Tool_Icon.ShowBalloonTip(500)
+$Main_Tool_Icon.ShowBalloonTip(200)
 
 
 

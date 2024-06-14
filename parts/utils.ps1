@@ -1,7 +1,14 @@
 
+
+
+using namespace Windows.Graphics.Imaging
 # Imports
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
+# ----------------------------------------------------
+# Part - Add the systray menu
+# ----------------------------------------------------        
+
 
 
 #================================
@@ -23,6 +30,10 @@ $streamdark = [System.IO.MemoryStream]::new($iconBytes, 0, $iconBytes.Length)
 $icondark = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($streamdark).GetHIcon()))
 
 
+# ----------------------------------------------------
+# Part - Add the systray menu
+# ----------------------------------------------------        
+
 
 
 # Stop EVERYTHING
@@ -40,46 +51,9 @@ $quit = {
  }
 
 
- 
-
-
-# This is very ugly
-#https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
-$source = @"
-using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-namespace KeySends
-{
-    public class KeySend
-    {
-        [DllImport("user32.dll")]
-        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-        private const int KEYEVENTF_EXTENDEDKEY = 1;
-        private const int KEYEVENTF_KEYUP = 2;
-        public static void KeyDown(Keys vKey)
-        {
-            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY, 0);
-        }
-        public static void KeyUp(Keys vKey)
-        {
-            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
-        }
-    }
-}
-"@
-Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
-
-
-
-
-
-
-
-
-
-
+# ----------------------------------------------------
+# Part - Add the systray menu
+# ----------------------------------------------------        
 
 
 <#
@@ -166,9 +140,9 @@ function Clear-ClipboardHistory
 
 
 
-
-
-
+# ----------------------------------------------------
+# Part - Add the systray menu
+# ----------------------------------------------------        
 
 Function Clipboard_generate_entries {
     param ($menu)
@@ -189,7 +163,7 @@ Function Clipboard_generate_entries {
         $entry0.Add_Click({Write-Output "Already latest in line!"})
         $menu.MenuItems.Add($entry0)
     }
-    catch {$menu.MenuItems.Add("<Empty clipboard>")}
+    catch {$menu.MenuItems.Add($Text_GUI_empty)}
 
     try {
         $entry1 = New-Object System.Windows.Forms.MenuItem
@@ -235,4 +209,140 @@ Function Clipboard_generate_entries {
     catch {Write-Output "Missing entries in history"}
 
     
+} # End of Clipboard_generate_entries
+
+
+
+
+
+
+
+
+
+function  OCRCapture {
+
+  Write-Host ('*'*40)
+  # Get old clipboard
+  $oldClipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
+  # Reset clipboard
+  [System.Windows.Forms.Clipboard]::SetText(' ')
+
+  # Take screenshot
+  if (Test-Path -Path $env:SYSTEMROOT"\System32\SnippingTool.exe") {
+    # Run snipping tool (Windows 10)
+    Write-Host '> Executing Snipping Tool'
+    [Diagnostics.Process]::Start('SnippingTool.exe', '/clip').WaitForExit()
+  } else {
+    # Run snip & sketch (Windows 11)
+    Write-Host '> Executing Snip & Sketch'
+    Start-Process 'explorer.exe' 'ms-screenclip:' -Wait
+  }
+  
+  # Wait for image to be copied to clipboard
+  Write-Host '> Waiting for image'
+  $timeout = New-TimeSpan -Seconds 10
+  $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+  do {
+    $clipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
+    Start-Sleep 0.01   # Avoid overloading the CPU
+    if ($stopwatch.elapsed -gt $timeout) {
+      Write-Output 'Failed to copy image to clipboard.'
+      Write-Host '> Failed. Aborting...'
+      [System.Windows.Forms.Clipboard]::SetDataObject($oldClipboard)
+      return
+    }
+  } until ($clipboard.ContainsImage())
+  
+  # Get image
+  $bmp = $clipboard.getimage()
+  # Restore old clipboard
+  [System.Windows.Forms.Clipboard]::SetDataObject($oldClipboard)
+  
+  # If softwareBitmap has a width/height under 150px, extend the image
+  $minPx = 150
+  if (($bmp.Height -lt $minPx) -or ($bmp.Width -lt $minPx)) {
+    $nh = [math]::max($bmp.Height, $minPx)
+    $nw = [math]::max($bmp.Width, $minPx)
+    Write-Host ([String]::Concat('> Extending image (',$bmp.Width,',',$bmp.Height,') -> (',$nw,',',$nh,') px'))
+    $graphics = [Drawing.Graphics]::FromImage(($newBmp = [Drawing.Bitmap]::new($nw, $nh)))
+    $graphics.Clear($bmp.GetPixel(0, 0))
+    if (($bmp.Height -lt $minPx) -and ($bmp.Width -lt $minPx)) {
+      $sf = ([math]::min(([math]::floor($minPx / [math]::max($bmp.Width, $bmp.Height))), 3))
+      if ($sf -gt 1) {Write-Host ([String]::Concat('> Scaling image by ',$sf,'x'))}
+    } else {
+      $sf = 1
+    }
+    $sw = ($sf * $bmp.Width)
+    $sh = ($sf * $bmp.Height)
+    $graphics.DrawImage($bmp, ([math]::floor(($nw-$sw)/2)), ([math]::floor(($nh-$sh)/2)), $sw, $sh)
+    $bmp = $newBmp.Clone()
+    $newBmp.Dispose()
+    $graphics.Dispose()
+  }
+
+  # Save bmp to memory stream
+  Write-Host '> Converting image format to SoftwareBitmap'
+  $memStream = [IO.MemoryStream]::new()
+  $bmp.Save($memStream, 'Bmp')
+
+  # Build SoftwareBitmap
+  $r = [IO.WindowsRuntimeStreamExtensions]::AsRandomAccessStream($memStream)
+  $params = @{
+    AsyncTask  = [BitmapDecoder]::CreateAsync($r)
+    ResultType = [BitmapDecoder]
+  }
+  $bitmapDecoder = Await @params
+  $params = @{ 
+    AsyncTask = $bitmapDecoder.GetSoftwareBitmapAsync()
+    ResultType = [SoftwareBitmap]
+  }
+  $softwareBitmap = Await @params
+  $memStream.Dispose()
+  $r.Dispose()
+
+  # Run OCR
+  Write-Host '> Running OCR'
+  (((Await $ocrEngine.RecognizeAsync($softwareBitmap)([Windows.Media.Ocr.OcrResult])).Lines |
+    ForEach-Object {$_.Text}) -Join "`n")
+  Write-Host '> Completed successfully'
 }
+
+
+
+
+
+
+
+# Extract from image, copy to clipboard if successful
+Function OCR_ToClipboard {
+
+    $o = ((&{OCRCapture}).Trim())
+
+    if ($o -eq '') {
+
+        # Tell user we started
+        $Main_Tool_Icon.BalloonTipTitle = $Script:Appname 
+        $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Error
+        $Main_Tool_Icon.BalloonTipText = $Script:Text_Notify_OCR_Failed
+        $Main_Tool_Icon.ShowBalloonTip(200)
+
+
+    }
+    else {
+
+        [System.Windows.Forms.Clipboard]::SetText($o)
+        
+        # Tell user we started
+        $Main_Tool_Icon.BalloonTipTitle = $Script:Appname 
+        $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
+        $Main_Tool_Icon.BalloonTipText = -join($Text_Notify_OCR_Success,$o)
+        $Main_Tool_Icon.ShowBalloonTip(200)
+
+    }
+
+    
+}
+
+
+
+

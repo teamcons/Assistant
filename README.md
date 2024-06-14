@@ -16,6 +16,7 @@ A small utility which offers several functions lacking for windows
 
 
 ### Todo, maybe, idk
+- OCR
 - Have a settings GUI, or at least an entry to open the file in an editor
 - Localization. I have to centralize text in a module, for that, first
 
@@ -82,6 +83,10 @@ Had a look through various sources for having a tray icon. Thanks to all of thes
 
 Clipboard history module by mutaguchi
 https://gist.github.com/mutaguchi/019ad33e156637585a22a656d8fd3f46
+
+
+OCR
+https://github.com/daijro/PsOCRCapture
 
 
 The soda can icon
