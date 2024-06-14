@@ -145,50 +145,20 @@ $Menu_Toggle_Autostart.Add_Click({
  })
 
 
-# ----------------------------------------------------
-# Part - ELSE
-# ----------------------------------------------------        
-
-<# # Timer
-$timer = {
-    Start-Sleep -seconds ($settings.Timer.Duration * 60)
-    $Main_Tool_Icon.BalloonTipTitle = "Hey!"
-    $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-    $Main_Tool_Icon.BalloonTipText = "Wake up!"
-    $Main_Tool_Icon.Visible = $true
-    $Main_Tool_Icon.ShowBalloonTip(500)
-    $Menu_Toggle_Timer.Checked = $false
-}
-
-
-# Toggle between halt and continue
-$Menu_Toggle_Timer = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_Timer.Text = -join("Notify me in ",$settings.Timer.Duration,"mn")
-$Menu_Toggle_Timer.Checked = $false
-$Menu_Toggle_Timer.Add_Click({
-    # If it was checked when clicked, stop time
-    # Else, it wasnt checked, so start timer
-    if ($Menu_Toggle_Timer.Checked) {
-        Stop-Job -Name "timer"
-        $Menu_Toggle_Timer.Checked = $false}
-    else {
-        Start-Job -ScriptBlock $timer -Name "timer"
-        $Menu_Toggle_Timer.Checked = $true}
- }) #>
  
-
-
-
-
-
-# ----------------------------------------------------
-# Part - ELSE
-# ----------------------------------------------------        
 
 # Stop everything
 $Menu_Exit = New-Object System.Windows.Forms.MenuItem
 $Menu_Exit.Text = "Quit Assistant"
 $Menu_Exit.add_Click($quit)
+
+
+
+
+# ----------------------------------------------------
+# Part - ELSE
+# ----------------------------------------------------        
+
 
 
 ## Hot corners 
@@ -201,16 +171,23 @@ $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
 $script:Submenu_clipboard                  = New-Object System.Windows.Forms.MenuItem
 $Submenu_clipboard.Text                     = "Clipboard history"
 
-$Submenu_clipboard.MenuItems.Add("Clear clipboard history")
-$Submenu_clipboard.MenuItems.Items[0].Add_Click({Clear-ClipboardHistory})
+$clear                  = New-Object System.Windows.Forms.MenuItem
+$clear.Text             = "Clear clipboard history"
+$clear.Add_Click({Clear-ClipboardHistory})
 
-$Submenu_clipboard.MenuItems.Add("-")
+
+
 
 Clipboard_generate_entries $Submenu_clipboard
+
 $Submenu_clipboard.Add_Popup({Clipboard_generate_entries $Submenu_clipboard})
 
 
 
+
+
+
+# ---------------------------------------------------------------------
 # All
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)

@@ -173,35 +173,66 @@ function Clear-ClipboardHistory
 Function Clipboard_generate_entries {
     param ($menu)
 
-    # Prepare
+    # Rebuild
     $menu.MenuItems.Clear()
+    $menu.MenuItems.Add($clear)
+    $menu.MenuItems.Add("-")
+
+    # Fetch
     $script:clipboard_history = Get-ClipboardHistory
 
     # Build new entries
-    $entry0 = New-Object System.Windows.Forms.MenuItem
-    $entry0.Text = ($clipboard_history[0])[0..20] -join ""
-    $entry0.Add_Click({Set-Clipboard $clipboard_history[0]})
-    $menu.MenuItems.Add($entry0)
 
-    $entry1 = New-Object System.Windows.Forms.MenuItem
-    $entry1.Text = ($clipboard_history[1])[0..20] -join ""
-    $entry1.Add_Click({Set-Clipboard $clipboard_history[1]})
-    $menu.MenuItems.Add($entry1)
+    try {
+        $entry0 = New-Object System.Windows.Forms.MenuItem
+        $entry0.Text = ($clipboard_history[0])[0..25] -join ""
+        $entry0.Add_Click({Write-Output "Already latest in line!"})
+        $menu.MenuItems.Add($entry0)
+    }
+    catch {$menu.MenuItems.Add("<Empty clipboard>")}
 
-    $entry2 = New-Object System.Windows.Forms.MenuItem
-    $entry2.Text = ($clipboard_history[2])[0..20] -join ""
-    $entry2.Add_Click({Set-Clipboard $clipboard_history[2]})
-    $menu.MenuItems.Add($entry2)
-
-    $entry3 = New-Object System.Windows.Forms.MenuItem
-    $entry3.Text = ($clipboard_history[3])[0..20] -join ""
-    $entry3.Add_Click({Set-Clipboard $clipboard_history[3]})
-    $menu.MenuItems.Add($entry3)
-
-    $entry4 = New-Object System.Windows.Forms.MenuItem
-    $entry4.Text = ($clipboard_history[4])[0..20] -join ""
-    $entry4.Add_Click({Set-Clipboard $clipboard_history[4]})
-    $menu.MenuItems.Add($entry4)
+    try {
+        $entry1 = New-Object System.Windows.Forms.MenuItem
+        $entry1.Text = ($clipboard_history[1])[0..25] -join ""
+        $entry1.Add_Click({Set-Clipboard $clipboard_history[1]})
+        $menu.MenuItems.Add($entry1)
+    }
+    catch {Write-Output "Missing entries in history"}
 
 
+    try {
+        $entry2 = New-Object System.Windows.Forms.MenuItem
+        $entry2.Text = ($clipboard_history[2])[0..25] -join ""
+        $entry2.Add_Click({Set-Clipboard $clipboard_history[2]})
+        $menu.MenuItems.Add($entry2)
+    }
+    catch {Write-Output "Missing entries in history"}
+
+    try {
+        $entry3 = New-Object System.Windows.Forms.MenuItem
+        $entry3.Text = ($clipboard_history[3])[0..25] -join ""
+        $entry3.Add_Click({Set-Clipboard $clipboard_history[3]})
+        $menu.MenuItems.Add($entry3)
+    }
+    catch {Write-Output "Missing entries in history"}
+
+
+    try {
+        $entry4 = New-Object System.Windows.Forms.MenuItem
+        $entry4.Text = ($clipboard_history[4])[0..25] -join ""
+        $entry4.Add_Click({Set-Clipboard $clipboard_history[4]})
+        $menu.MenuItems.Add($entry4)
+    }
+    catch {Write-Output "Missing entries in history"}
+
+
+    try {
+        $entry5 = New-Object System.Windows.Forms.MenuItem
+        $entry5.Text = ($clipboard_history[5])[0..25] -join ""
+        $entry5.Add_Click({Set-Clipboard $clipboard_history[5]})
+        $menu.MenuItems.Add($entry5)    
+    }
+    catch {Write-Output "Missing entries in history"}
+
+    
 }
