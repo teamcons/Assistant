@@ -197,40 +197,30 @@ $Submenu_hotcorner.Text             = "Hot corners"
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
 
-<# ## Hot corners 
-$Submenu_clipboard                  = New-Object System.Windows.Forms.MenuItem
-$Submenu_clipboard.Text             = "Clipboard"
+## Hot corners 
+$script:Submenu_clipboard                  = New-Object System.Windows.Forms.MenuItem
+$Submenu_clipboard.Text                     = "Clipboard history"
 #$Submenu_clipboard.MenuItems.Add("All Items here")
 #$Submenu_clipboard.MenuItems.Add("-")
-$Submenu_clipboard.Add_Click({[System.Windows.Forms.SendKeys]::SendWait('^{ESC}')}) #>
-#$Submenu_clipboard.Add_Select({})
-
-
-# Simulate Meta+V (Clipboard)
-$Menu_Clipboard = New-Object System.Windows.Forms.MenuItem
-$Menu_Clipboard.Text = "View clipboard"
-$Menu_Clipboard.add_Click({ Write-Output "[Clipboard] Activated!"
-    #[Windows.Forms.Cursor]::Position
-    [KeySends.KeySend]::KeyDown("LWin")
-    [KeySends.KeySend]::KeyDown("V")
-    [KeySends.KeySend]::KeyUp("LWin")
-    [KeySends.KeySend]::KeyUp("V")
-})
-
+Clipboard_generate_entries $Submenu_clipboard
+$Submenu_clipboard.Add_Popup({Clipboard_generate_entries $Submenu_clipboard})
 
 
 
 # All
 $Main_Tool_Icon.ContextMenu = New-Object System.Windows.Forms.ContextMenu
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
+
+
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Clipboard)
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)
+#$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Clipboard)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
-#$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
+
+
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 #$Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Toggle_Timer)
-
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)
 #$Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_Autostart)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Exit)

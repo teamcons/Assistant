@@ -28,16 +28,23 @@ else
 # When executed at windows start, location is not in the script folder
 Set-Location -Path $ScriptPath
 
-
 # Read the file
 $script:settings = Import-LocalizedData -FileName settings.psd1 -BaseDirectory $ScriptPath\parts
-
-
 
 # Load everything we need
 Import-Module $ScriptPath\parts\text.ps1
 Import-Module $ScriptPath\parts\utils.ps1
 Import-Module $ScriptPath\parts\UI.ps1
+
+
+
+
+    #===============================================
+    #                Initialization                =
+    #===============================================
+
+#========================================
+# Get all important variables in place 
 
 
 
@@ -59,13 +66,6 @@ if ($settings.KeepAwake.Enabled)
 }
 
 
-
-<# if ($settings.Clipboard.Enabled)
-{
-    #clipboard_watch
-    #Start-Job -ScriptBlock $clipboard_watch -Name Clipboard
-}
- #>
 
 # Tell user we started
 $Main_Tool_Icon.BalloonTipTitle = "Started!"

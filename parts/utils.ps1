@@ -40,62 +40,7 @@ $quit = {
  }
 
 
-<# 
- # HMMM ? https://devblogs.microsoft.com/oldnewthing/20230303-00/?p=107894
-function clipboard_watch {
-
-    # We save every clipboard entry in this
-    $clipboard_saved = New-Object System.Collections.Generic.List[string]
-
-    # Initialize UI and list to save clipboard in
-    for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
-        $clipboard_saved.Add((-join "Entry ",$i))
-        $Submenu_clipboard.MenuItems.Add($i)
-    }
-    # FIXME: Find a way to do this programmatically (dynamic scriptblocks or something)
-    # FIXME: Wrong pasted
-    $Submenu_clipboard.MenuItems[0].Add_Click({Set-Clipboard $clipboard_saved[0]})
-    $Submenu_clipboard.MenuItems[1].Add_Click({Set-Clipboard $clipboard_saved[1]})
-    $Submenu_clipboard.MenuItems[2].Add_Click({Set-Clipboard $clipboard_saved[2]})
-    $Submenu_clipboard.MenuItems[3].Add_Click({Set-Clipboard $clipboard_saved[3]})
-    $Submenu_clipboard.MenuItems[4].Add_Click({Set-Clipboard $clipboard_saved[4]})
-
-    # The test is Forever
-    while ($true)
-    {
-
-        # Retrieve clipboard content
-        $clipboard_now = Get-Clipboard -Raw
-
-
-        # If in the corner. We test for a range, because monitors on the left have negative X, monitors on top negative Y
-        # "0" is the absolute corner of main screen.
-        if ($clipboard_now -ne $clipboard_saved[0] )
-        {
-            # Add as first element to the list
-            # Trim the last out to stay at same number
-            [void]$clipboard_saved.Insert(0,$clipboard_now)
-            [void]$clipboard_saved.remove($clipboard_saved[-1])
-
-            # Regen all items
-            for ($i = 0; $i -lt $settings.Clipboard.remembereditems; $i++) {
-                $Submenu_clipboard.MenuItems[$i].Text = ($clipboard_saved[$i])[0..20] -join ""
-            }
-
-            echo "NEWCYCLE"
-            $clipboard_saved
-            echo ""
-
-        } # End of if copied new
-
-        Start-Sleep -Milliseconds $settings.Clipboard.reactivity
-    } # End of testing forever without end
-}
-
-
-
- #>
-
+ 
 
 
 # This is very ugly
@@ -125,3 +70,138 @@ namespace KeySends
 }
 "@
 Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
+
+
+
+
+
+
+
+
+
+
+
+
+<#
+Get-ClipboardHistory: Get the texts contained in the clipboard history.
+Clear-ClipboardHistory: Clearing the clipboard history
+
+In PowerShell 7.1 or later, use the following command to install Microsoft.Windows.SDK.NET.Ref with administrative privileges.
+Find-Package -ProviderName NuGet -Source https://www.nuget.org/api/v2 -Name Microsoft.Windows.SDK.NET.Ref | Install-Package
+#>
+
+$needsSDK = $PSVersionTable.PSVersion -ge "7.1.0" 
+
+if ($needsSDK)
+{
+    $sdkLib = Split-Path -Path (
+        Get-Package -ProviderName NuGet -Name Microsoft.Windows.SDK.NET.Ref |
+            Select-Object -ExpandProperty Source) -Parent |
+        Join-Path -ChildPath "\lib"
+    Add-Type -Path "$sdkLib\Microsoft.Windows.SDK.NET.dll"
+    Add-Type -Path "$sdkLib\WinRT.Runtime.dll"
+}
+else
+{
+    Add-Type -AssemblyName System.Runtime.WindowsRuntime
+}
+
+$clipboard = if ($needsSDK)
+{
+    [Windows.ApplicationModel.DataTransfer.Clipboard]
+}
+else
+{
+    [Windows.ApplicationModel.DataTransfer.Clipboard, Windows.ApplicationModel.DataTransfer, ContentType = WindowsRuntime]
+}
+
+function await
+{
+    param($AsyncTask, [Type]$ResultType)
+
+    $method = [WindowsRuntimeSystemExtensions].GetMember("GetAwaiter") |
+        where {$_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1'} |
+        select -First 1
+    $method.MakeGenericMethod($ResultType).
+    Invoke($null, @($AsyncTask)).
+    GetResult()
+}
+
+function Get-ClipboardHistory
+{
+    $type = if ($script:needsSDK)
+    {
+        [Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult]
+    }
+    else
+    {
+        [Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult, Windows.ApplicationModel.DataTransfer, ContentType = WindowsRuntime]
+    }
+
+    $result = await $script:clipboard::GetHistoryItemsAsync() $type
+    
+    $outItems = if ($script:needsSDK)
+    {
+        @($result.Items.AdditionalTypeData.Values)
+    }
+    else
+    {
+        @($result.Items)
+    }
+
+    $outItems |
+        where {$_.Content.Contains("Text")} |
+        foreach {await $_.Content.GetTextAsync() ([string])}
+}
+
+function Clear-ClipboardHistory
+{
+    $script:clipboard::ClearHistory() | Out-Null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Function Clipboard_generate_entries {
+    param ($menu)
+
+    # Prepare
+    $menu.MenuItems.Clear()
+    $script:clipboard_history = Get-ClipboardHistory
+
+    # Build new entries
+    $entry0 = New-Object System.Windows.Forms.MenuItem
+    $entry0.Text = ($clipboard_history[0])[0..20] -join ""
+    $entry0.Add_Click({Set-Clipboard $clipboard_history[0]})
+    $menu.MenuItems.Add($entry0)
+
+    $entry1 = New-Object System.Windows.Forms.MenuItem
+    $entry1.Text = ($clipboard_history[1])[0..20] -join ""
+    $entry1.Add_Click({Set-Clipboard $clipboard_history[1]})
+    $menu.MenuItems.Add($entry1)
+
+    $entry2 = New-Object System.Windows.Forms.MenuItem
+    $entry2.Text = ($clipboard_history[2])[0..20] -join ""
+    $entry2.Add_Click({Set-Clipboard $clipboard_history[2]})
+    $menu.MenuItems.Add($entry2)
+
+    $entry3 = New-Object System.Windows.Forms.MenuItem
+    $entry3.Text = ($clipboard_history[3])[0..20] -join ""
+    $entry3.Add_Click({Set-Clipboard $clipboard_history[3]})
+    $menu.MenuItems.Add($entry3)
+
+    $entry4 = New-Object System.Windows.Forms.MenuItem
+    $entry4.Text = ($clipboard_history[4])[0..20] -join ""
+    $entry4.Add_Click({Set-Clipboard $clipboard_history[4]})
+    $menu.MenuItems.Add($entry4)
+
+
+}

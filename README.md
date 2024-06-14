@@ -40,8 +40,9 @@ The exe does not work on its own, it needs the other folders
 
 ### View clipboard
 
-Simulate Meta + V to open the clipboard manager and see past entries
-Useless if you know of the shortcut, but nice
+Shows an history of copied stuff.
+Uses Windows native feature (what you get with Meta+V) to retrieve history
+
 
 
 ### Hot corner: Top left
@@ -78,7 +79,10 @@ Had a look through various sources for having a tray icon. Thanks to all of thes
 - https://stackoverflow.com/questions/54649456/powershell-notifyicon-context-menu
 - https://adamtheautomator.com/powershell-async/
 
-The icons are from the same website... I should do my owns. Thanks nonetheless !
+
+Clipboard history module by mutaguchi
+https://gist.github.com/mutaguchi/019ad33e156637585a22a656d8fd3f46
+
 
 The soda can icon
 <a href="https://www.flaticon.com/free-icons/soda" title="soda icons">Soda icons created by Chanut-is-Industries - Flaticon</a>
