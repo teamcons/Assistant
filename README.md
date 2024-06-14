@@ -87,5 +87,5 @@ https://gist.github.com/mutaguchi/019ad33e156637585a22a656d8fd3f46
 The soda can icon
 <a href="https://www.flaticon.com/free-icons/soda" title="soda icons">Soda icons created by Chanut-is-Industries - Flaticon</a>
 
-
+<a href="https://www.flaticon.com/free-icons/virtual-assistant" title="virtual assistant icons">Virtual assistant icons created by Freepik - Flaticon</a>
 
