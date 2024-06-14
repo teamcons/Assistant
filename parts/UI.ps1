@@ -200,8 +200,12 @@ $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
 ## Hot corners 
 $script:Submenu_clipboard                  = New-Object System.Windows.Forms.MenuItem
 $Submenu_clipboard.Text                     = "Clipboard history"
-#$Submenu_clipboard.MenuItems.Add("All Items here")
-#$Submenu_clipboard.MenuItems.Add("-")
+
+$Submenu_clipboard.MenuItems.Add("Clear clipboard history")
+$Submenu_clipboard.MenuItems.Items[0].Add_Click({Clear-ClipboardHistory})
+
+$Submenu_clipboard.MenuItems.Add("-")
+
 Clipboard_generate_entries $Submenu_clipboard
 $Submenu_clipboard.Add_Popup({Clipboard_generate_entries $Submenu_clipboard})
 
