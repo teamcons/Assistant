@@ -241,7 +241,7 @@ $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
 
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_OCR)
+#$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_OCR)
 
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
