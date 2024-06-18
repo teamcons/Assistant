@@ -81,7 +81,7 @@ Create a shortcut in the autostart folder. If theres already one, theres a check
 When Windows starts up, Assistant will start too.
 
 
-# Known bugs
+# 🦺 Known bugs
 Does not quit super cleanly : There is still a zombie process running, it does nothing nor take resources but locks the file so nobody can delete or move it until the process is killed, or not started at all when the puter starts
 
 
