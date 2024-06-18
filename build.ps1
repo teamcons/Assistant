@@ -59,7 +59,19 @@ ps2exe `
 -Verbose `
 -outputFile $ScriptPath\functionalities\hotcorner_winbutton.exe
 
-
+ps2exe `
+-inputFile $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.ps1 `
+-iconFile $ScriptPath\assets\soft-drink.ico `
+-noConsole `
+-noOutput `
+-exitOnCancel `
+-title "Warm edge" `
+-description "Bottom right show desktop" `
+-company "teamcons" `
+-copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
+-version 0.9 `
+-Verbose `
+-outputFile $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.exe
 
 ps2exe `
 -inputFile $ScriptPath\functionalities\keepawake.ps1 `
