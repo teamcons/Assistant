@@ -23,9 +23,8 @@ It runs on Windows Forms, and has a .exe file.
 - OCR
 - Localization.
 
-
-  <table align="center" border="none">
-      <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png"" /></td>
+<table align="center" border="none">
+      <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png" /></td>
 </table>
 
 
