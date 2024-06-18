@@ -2,11 +2,10 @@
 
 # 💽 Assistant
 
-### All the stuff
 
-A small utility sitting in the tray, which offers several handy functions lacking for windows
+A small utility sitting in the tray, which offers several handy functions lacking for windows, like hot corners, clipboard management, caffeine...
 
-It runs on Windows Forms, and has a .exe file. 
+It runs on Windows Forms, and has a .exe file. You dont need special rights to start it, you dont need to install it, just put it somewhere where it wont move.
 
 
 ### Done and tested
@@ -21,14 +20,14 @@ It runs on Windows Forms, and has a .exe file.
 
 ### Todo, maybe, idk
 - OCR
-- Localization.
+- Localization (I can German, French, and Spanish, only. Itd detect if the puter use those languages)
 
 <table align="center" border="none">
       <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png" /></td>
 </table>
 
 
-# Installation
+# Installation (More like how to use it)
 
 On the right on this page, go on "releases"
 Download the zip folder
@@ -55,18 +54,18 @@ This uses Windows native feature (what you get with Meta+V) to retrieve history
 ### Hot corners
 Hot corners are zones on the screen which activates something when touched. This is useful if you want to have something by just throwing your mouse at it
 
-#### Top left: Overview
+ - #### Top left: Overview
 Hit the top left edge of the screen.
 An overview of all windows and virtual desktops will appear.
 Hit it a second time to go back, or click on any window
 
-#### Bottom left: Show start menu
+ - #### Bottom left: Show start menu
 
 Hover the windows logo in the bottom right.
 The start menu will appear
 
 
-#### Bottom right: Show desktop
+ - #### Bottom right: Show desktop
 
 Hit the mouse in the bottom left of the screen, that is where the "show desktop" mini button is.
 It will at first hide all windows to show the desktop
