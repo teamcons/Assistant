@@ -4,21 +4,24 @@
 
 ### All the stuff
 
-A small utility which offers several functions lacking for windows
+A small utility sitting in the tray, which offers several handy functions lacking for windows
+
+It runs on Windows Forms, and has a .exe file. 
+
 
 ### Done and tested
 - Keep awake: Toggle between preventing computer to go to sleep or not
-- Hot corner top left : Hitting the top left edge triggers an overview
+- Hot corner overview : Hitting the top left edge triggers an overview
 - Hot corner hover meta : Hitting the botton left (windows logo) opens the start menu
+- Hot corner show desktop : Hitting bottom right shows desktop
 - Autostart : Start Assistant with Windows
-- Settings : Edit the settings file to change stuff
-- Summon windows clipboard manager
+- Settings : Edit the settings file to change stuff. Careful of following powershell syntax or it breaks
+- Clipboard manager : Remembers past copied elements and toggle between them. Useful if you need to copy paste
 
 
 ### Todo, maybe, idk
 - OCR
-- Have a settings GUI, or at least an entry to open the file in an editor
-- Localization. I have to centralize text in a module, for that, first
+- Localization.
 
 
   <table align="center" border="none">
@@ -35,39 +38,53 @@ Click on Assistant.exe
 A notification should poke you to tell you Assistant has started
 
 The exe does not work on its own, it needs the other folders
+The hot corners needs their own separate files. They do not work else. You can use them alone, but then need the task manager to stop them (no UI)
 
 
 # Documentation
 
-### View clipboard
+### Clipboard history
 
-Shows an history of copied stuff.
-Uses Windows native feature (what you get with Meta+V) to retrieve history
+Shows the last 6 copied elements.
+Click on any item to have it be the last (the one you get when pasting)
+You can clear clipboard history by clicking on "Clear history"
+
+This uses Windows native feature (what you get with Meta+V) to retrieve history
 
 
 
-### Hot corner: Top left
-The program constantly checks whether the mouse is in the top left
-Simulate Meta + D
+### Hot corners
+Hot corners are zones on the screen which activates something when touched. This is useful if you want to have something by just throwing your mouse at it
 
-### Hot corner: Hover meta
+#### Top left: Overview
+Hit the top left edge of the screen.
+An overview of all windows and virtual desktops will appear.
+Hit it a second time to go back, or click on any window
 
-The program constantly checks whether the mouse is in the bottom
-Simulates Meta
+#### Bottom left: Show start menu
+
+Hover the windows logo in the bottom right.
+The start menu will appear
+
+
+#### Bottom right: Show desktop
+
+Hit the mouse in the bottom left of the screen, that is where the "show desktop" mini button is.
+It will at first hide all windows to show the desktop
+hit it a second time to make all windows reappear
+
 
 ### Keep awake
-
-The computer is prevented to go to sleep by simulating a keypress on F15.
-This key shouldnt be used by any program nor appear on the keyboard but... If there is weird behavior it could come from here.
+When activated, the computer is prevented to go to sleep. The screen stays on.
 
 
 ### Start with puter
 Create a shortcut in the autostart folder. If theres already one, theres a check
+When Windows starts up, Assistant will start too.
 
 
 # Known bugs
-
-Does not quit super cleanly : There is still a zombie process running, it does nothing nor take resources but locks the file.
+Does not quit super cleanly : There is still a zombie process running, it does nothing nor take resources but locks the file so nobody can delete or move it until the process is killed, or not started at all when the puter starts
 
 
 
