@@ -27,7 +27,7 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 </table>
 
 
-# Installation (More like how to use it)
+# 💺 Installation (More like how to use it)
 
 On the right on this page, go on "releases"
 Download the zip folder
@@ -39,7 +39,7 @@ The exe does not work on its own, it needs the other folders
 The hot corners needs their own separate files. They do not work else. You can use them alone, but then need the task manager to stop them (no UI)
 
 
-# Documentation
+# 📚 Documentation
 
 ### Clipboard history
 
@@ -87,7 +87,7 @@ Does not quit super cleanly : There is still a zombie process running, it does n
 
 
 
-# Acknowledgments
+# 👌 Acknowledgments
 
 Had a look through various sources for having a tray icon. Thanks to all of these !
 - https://github.com/damienvanrobaeys/Build-PS1-Systray-Tool
