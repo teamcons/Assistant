@@ -27,16 +27,20 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 </table>
 
 
-# 💺 Installation (More like how to use it)
+# 💺 "Installation"
 
 On the right on this page, go on "releases"
+
 Download the zip folder
+
 Uncompress it
+
 Click on Assistant.exe
+
 A notification should poke you to tell you Assistant has started
 
 The exe does not work on its own, it needs the other folders
-The hot corners needs their own separate files. They do not work else. You can use them alone, but then need the task manager to stop them (no UI)
+The hot corners needs their own separate files. They do not work as background process. You can use them alone, but then need the task manager to stop them (no UI)
 
 
 # 📚 Documentation
