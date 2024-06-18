@@ -19,23 +19,23 @@
 # Get all important variables in place 
 
 param(
-    [int]$hotcorner_reactivity              = 400,   # In milliseconds - How often to check mouse location.
+    [int]$hotcorner_reactivity              = 500,   # In milliseconds - How often to check mouse location.
     [byte]$hotcorner_sensitivity            = 50    # In pixels - Size of hot corner area
     )
+
+# Imports
+Add-Type -AssemblyName System.Windows.Forms
 
 
 # Calculate positions of the hot corner area
 [int]$Bottom                            = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
-[int]$BottomInRange                     = ($Bottom - $hotcorner_sensitivity)
+[int]$BottomInRange                     = ($Bottom - 48) # Size of bar
 
 # Calculate positions of the hot corner area
 [int]$Right                            = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Width
-[int]$RightInRange                     = ($Right - $hotcorner_sensitivity)
+[int]$RightInRange                     = ($Right - 16) # Do not use sensitivity : We risk activating on hovering date
 
 
-
-# Imports
-Add-Type -AssemblyName System.Windows.Forms
 
 
 
@@ -101,7 +101,7 @@ while ($true)
 
         # wait for people to leave the button
         Write-Output "[HOT CORNER] Wait for rearming..."
-        while   (([Windows.Forms.Cursor]::Position.X -In $RightInRange..$Righty) -and
+        while   (([Windows.Forms.Cursor]::Position.X -In $RightInRange..$Right) -and
                 ([Windows.Forms.Cursor]::Position.Y -In $BottomInRange..$Bottom))
         {
             Start-Sleep -Milliseconds $hotcorner_reactivity

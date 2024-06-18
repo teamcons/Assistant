@@ -23,6 +23,7 @@ $Script:Text_GUI_empty                              = "<Empty clipboard>"
 $Script:Text_GUI_Submenu_hotcorner                      = "Hot corners"
 $Script:Text_GUI_Menu_Toggle_HotCorner_TopLeft          = "Hit top left edge for overview"
 $Script:Text_GUI_Menu_Toggle_HotCorner_WinButton        = "Hover start menu to open"
+$Script:Text_GUI_Menu_Toggle_HotCorner_ShowDesktop        = "Hover bottom right edge to show desktop"
 
 
 # Subfunctions

@@ -60,6 +60,12 @@ if ($settings.WindowsButton.Enabled)
 }
 
 
+if ($settings.ShowDesktop.Enabled) 
+{
+    Start-Process  -FilePath $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+}
+
+
 if ($settings.KeepAwake.Enabled)
 {
     Start-Process -FilePath $ScriptPath\functionalities\keepawake.exe    

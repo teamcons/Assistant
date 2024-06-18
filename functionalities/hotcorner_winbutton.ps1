@@ -23,6 +23,9 @@ param(
     [byte]$hotcorner_sensitivity            = 50    # In pixels - Size of hot corner area
     )
 
+    # Imports
+Add-Type -AssemblyName System.Windows.Forms
+
 # Calculate positions of the hot corner area
 [int]$Bottom                            = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
 [int]$BottomInRange                     = ($Bottom - $hotcorner_sensitivity)
@@ -32,8 +35,6 @@ param(
 # This way the hot corner is a real "hover over windows logo" button
 [int]$RightSide                         = ($hotcorner_sensitivity + 5)
 
-# Imports
-Add-Type -AssemblyName System.Windows.Forms
 
 
 

@@ -13,6 +13,15 @@
         sensitivity         = 50
     }
 
+
+    ShowDesktop   = @{
+        Enabled             = $false
+        reactivity          = 500
+        sensitivity         = 50
+    }
+
+
+
     KeepAwake       = @{
         Enabled             = $true
     }
