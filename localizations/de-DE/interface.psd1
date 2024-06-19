@@ -1,7 +1,5 @@
 @{
 
-
-
 TopUI = @{
     Appname                 = "Assistent"
     About                   = "Über Assistent"
@@ -20,7 +18,6 @@ Clipboard = @{
     Empty                   = "<Leere Zwischenablage>"
     Whitespace              = "<Whitespaces/Tabs>"
 }
-
 
 Hotcorners = @{
     Menu                    = "Heiße Ecken"

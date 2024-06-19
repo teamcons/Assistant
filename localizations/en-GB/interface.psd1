@@ -1,7 +1,5 @@
 @{
 
-
-
 TopUI = @{
     Appname                 = "Assistant"
     About                   = "About Assistant"
@@ -14,22 +12,12 @@ TopUI = @{
     Exit                    = "Quit Assistant"
 }
 
-
-
-OCR = @{
-    Menu                    = "Copy text from screen (OCR)"
-    Success                 = "Text successfully extracted and copied to clipboard: "
-    Failed                  = "Failed to extract text!"
-}
-
-
 Clipboard = @{
     Menu                    = "Clipboard history"
     Clear                   = "Clear clipboard history"
     Empty                   = "<Empty clipboard>"
     Whitespace              = "<Whitespaces/Tabs>"
 }
-
 
 Hotcorners = @{
     Menu                    = "Hot corners"

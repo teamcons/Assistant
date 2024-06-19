@@ -1,19 +1,16 @@
 @{
 
-
-
 TopUI = @{
     Appname                 = "Assistant"
     About                   = "À propos d'Assistant"
 
     NotifyStartTitle        = "Demarré!"
-    NotifyStartText         = "Click on the tray icon if you need anything"
+    NotifyStartText         = "Cliquez sur l'icône de la barre des tâches si vous avez besoin de quoi que ce soit."
 
-    KeepAwake               = "Keep puter awake"
+    KeepAwake               = "Garder l'ordinateur éveillé"
     Autostart               = "Démarrer Assistant avec Windows"
-    Exit                    = "Fermer Assistant"
+    Exit                    = "Quitter Assistant"
 }
-
 
 Clipboard = @{
     Menu                    = "Historique du presse-papiers"
@@ -22,12 +19,11 @@ Clipboard = @{
     Whitespace              = "<Espaces/Tabulations>"
 }
 
-
 Hotcorners = @{
-    Menu                    = "Hot corners"
-    Overview                = "Hit top left edge to show overview"
+    Menu                    = "coins chauds"
+    Overview                = "Appuyez sur le bord supérieur gauche pour afficher la vue d'ensemble"
     WinButton               = "Survoler le bouton Démarrer pour l'ouvrir"
-    ShowDesktop             = "Hit bottom right edge to show desktop"
+    ShowDesktop             = "Appuyez sur le bord inférieur droit pour afficher le bureau"
 }
 
 

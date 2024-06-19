@@ -1,41 +1,29 @@
 @{
 
-
-
 TopUI = @{
-    Appname                 = "Assistant"
-    About                   = "About Assistant"
+    Appname                 = "Asistente"
+    About                   = "Acerca de Asistente"
 
-    NotifyStartTitle        = "Started!"
-    NotifyStartText         = "Click on the tray icon if you need anything"
+    NotifyStartTitle        = "¡Comenzó!"
+    NotifyStartText         = "Haz clic en el icono de la bandeja si necesitas algo"
 
-    KeepAwake               = "Keep puter awake"
-    Autostart               = "Start Assistant with puter"
-    Exit                    = "Quit Assistant"
+    KeepAwake               = "Mantén el ordenador despierto"
+    Autostart               = "Asistente de inicio con el ordenador"
+    Exit                    = "Asistente de renuncia"
 }
-
-
-
-OCR = @{
-    Menu                    = "Copy text from screen (OCR)"
-    Success                 = "Text successfully extracted and copied to clipboard: "
-    Failed                  = "Failed to extract text!"
-}
-
 
 Clipboard = @{
-    Menu                    = "Clipboard history"
-    Clear                   = "Clear clipboard history"
-    Empty                   = "<Empty clipboard>"
-    Whitespace              = "<Whitespaces/Tabs>"
+    Menu                    = "Historia del portapapeles"
+    Clear                   = "Borrar historial del portapapeles"
+    Empty                   = "<Portapapeles vacío>"
+    Whitespace              = "<espacios/tabuladores>"
 }
 
-
 Hotcorners = @{
-    Menu                    = "Hot corners"
-    Overview                = "Hit top left edge to show overview"
-    WinButton               = "Hover start menu to open it"
-    ShowDesktop             = "Hit bottom right edge to show desktop"
+    Menu                    = "Esquinas calientes"
+    Overview                = "Pulsa en el borde superior izquierdo para mostrar la vista general"
+    WinButton               = "Pasa el ratón por encima del menú de inicio para abrirlo"
+    ShowDesktop             = "Pulsa en el borde inferior derecho para mostrar el escritorio"
 }
 
 
