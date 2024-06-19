@@ -24,6 +24,7 @@ Hotcorners = @{
     Overview                = "Hit top left edge to show overview"
     WinButton               = "Hover start menu to open it"
     ShowDesktop             = "Hit bottom right edge to show desktop"
+    Close                   = "Hit top right edge to close active window"
 }
 
 

@@ -24,6 +24,7 @@ Hotcorners = @{
     Overview                = "Pulsa en el borde superior izquierdo para mostrar la vista general"
     WinButton               = "Pasa el ratón por encima del menú de inicio para abrirlo"
     ShowDesktop             = "Pulsa en el borde inferior derecho para mostrar el escritorio"
+    Close                   = "Pulsa el borde superior derecho para cerrar la ventana activa"
 }
 
 

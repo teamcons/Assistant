@@ -21,6 +21,12 @@
     }
 
 
+    Close   = @{
+        Enabled             = $false
+        reactivity          = 500
+        sensitivity         = 20
+    }
+
     KeepAwake       = @{
         Enabled             = $true
     }

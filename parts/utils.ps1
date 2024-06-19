@@ -20,6 +20,10 @@ $quit = {
     # Stop everything that needs stopping
     if ($Menu_Toggle_HotCorner_TopLeft.Checked)     {Stop-Process -Name hotcorner_topleft}
     if ($Menu_Toggle_HotCorner_WinButton.Checked)   {Stop-Process -Name hotcorner_winbutton}
+    if ($Menu_Toggle_HotCorner_ShowDesktop.Checked)   {Stop-Process -Name hotcorner_bottomright_showdesktop}
+    if ($Menu_Toggle_HotCorner_Close.Checked)       {Stop-Process -Name hotcorner_topright_close}
+
+
     if ($Menu_Toggle_KeepAwake.Checked)             {Stop-Process -Name keepawake}
 
     $Main_Tool_Icon.Icon.Dispose();

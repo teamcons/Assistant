@@ -128,8 +128,6 @@ $Menu_Toggle_HotCorner_WinButton.Add_Click({
     else {
         Start-Process $ScriptPath\parts\hotcorner_winbutton.exe
         $Menu_Toggle_HotCorner_WinButton.Checked = $true}
-
-
  })
 
 
@@ -151,11 +149,29 @@ $Menu_Toggle_HotCorner_ShowDesktop.Add_Click({
     else {
         Start-Process $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe
         $Menu_Toggle_HotCorner_ShowDesktop.Checked = $true}
-
-
  })
 
 
+
+ 
+# ----------------------------------------------------
+# Part - HOTCORNER MENU
+# ----------------------------------------------------        
+
+# Toggle between halt and continue
+$Menu_Toggle_HotCorner_Close = New-Object System.Windows.Forms.MenuItem
+$Menu_Toggle_HotCorner_Close.Checked = $false
+$Menu_Toggle_HotCorner_Close.Text = $text.Hotcorners.Close
+$Menu_Toggle_HotCorner_Close.Add_Click({
+    # If it was checked when clicked, stop it
+    # Else, it wasnt checked, so start it
+    if ($Menu_Toggle_HotCorner_Close.Checked) {
+        Stop-Process -Name hotcorner_topright_close
+        $Menu_Toggle_HotCorner_Close.Checked = $false}
+    else {
+        Start-Process $ScriptPath\parts\hotcorner_topright_close.exe
+        $Menu_Toggle_HotCorner_Close.Checked = $true}
+ })
 
 
 
@@ -169,7 +185,7 @@ $Submenu_hotcorner.Text             = $text.Hotcorners.Menu
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
-
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_Close)
 
 
 

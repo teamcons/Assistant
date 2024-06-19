@@ -16,11 +16,11 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 - Autostart : Start Assistant with Windows
 - Settings : Edit the settings file to change stuff. Careful of following powershell syntax or it breaks
 - Clipboard manager : Remembers past copied elements and toggle between them. Useful if you need to copy paste
-
+- Localization (I can German, French, and Spanish, only. Itd detect if the puter use those languages)
 
 ### Todo, maybe, idk
 - OCR
-- Localization (I can German, French, and Spanish, only. Itd detect if the puter use those languages)
+
 
 <table align="center" border="none">
       <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png" /></td>
@@ -74,6 +74,12 @@ The start menu will appear
 Hit the mouse in the bottom left of the screen, that is where the "show desktop" mini button is.
 It will at first hide all windows to show the desktop
 hit it a second time to make all windows reappear
+
+ - #### Top right: Close active window
+
+Hit the mouse in the top right of the screen to close the current focused window (NOT the maximized one)
+This is Alt+F4 with extra steps, so you should get a window asking for saving if it is something like Word
+By default the hot corner is smaller, in case of accidental movements
 
 
 ### Keep awake
