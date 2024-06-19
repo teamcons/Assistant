@@ -20,7 +20,9 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 
 ### Todo, maybe, idk
 - OCR
-
+- Remember what is enabled or not
+- Better localizations
+- more visual hot corners menu ?
 
 <table align="center" border="none">
       <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png" /></td>
