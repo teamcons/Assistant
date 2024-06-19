@@ -56,24 +56,24 @@ Import-Module $ScriptPath\parts\UI.ps1
 # Start the subprocesses
 if ($settings.TopLeftOverview.Enabled)
 {
-    Start-Process -FilePath $ScriptPath\functionalities\hotcorner_topleft.exe -ArgumentList $settings.TopLeftOverview.reactivity,$settings.TopLeftOverview.sensitivity 
+    Start-Process -FilePath $ScriptPath\parts\hotcorner_topleft.exe -ArgumentList $settings.TopLeftOverview.reactivity,$settings.TopLeftOverview.sensitivity 
 }
 
 if ($settings.WindowsButton.Enabled) 
 {
-    Start-Process  -FilePath $ScriptPath\functionalities\hotcorner_winbutton.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+    Start-Process  -FilePath $ScriptPath\parts\hotcorner_winbutton.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
 }
 
 
 if ($settings.ShowDesktop.Enabled) 
 {
-    Start-Process  -FilePath $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+    Start-Process  -FilePath $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
 }
 
 
 if ($settings.KeepAwake.Enabled)
 {
-    Start-Process -FilePath $ScriptPath\functionalities\keepawake.exe    
+    Start-Process -FilePath $ScriptPath\parts\keepawake.exe    
 }
 
 

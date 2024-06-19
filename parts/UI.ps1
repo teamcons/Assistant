@@ -102,7 +102,7 @@ $Menu_Toggle_HotCorner_TopLeft.Add_Click({
         Stop-Process -Name hotcorner_topleft
         $Menu_Toggle_HotCorner_TopLeft.Checked = $false}
     else {
-        Start-Process $ScriptPath\functionalities\hotcorner_topleft.exe
+        Start-Process $ScriptPath\parts\hotcorner_topleft.exe
         $Menu_Toggle_HotCorner_TopLeft.Checked = $true
     
         $hotcorner_topleft_ID}
@@ -126,7 +126,7 @@ $Menu_Toggle_HotCorner_WinButton.Add_Click({
         Stop-Process -Name hotcorner_winbutton
         $Menu_Toggle_HotCorner_WinButton.Checked = $false}
     else {
-        Start-Process $ScriptPath\functionalities\hotcorner_winbutton.exe
+        Start-Process $ScriptPath\parts\hotcorner_winbutton.exe
         $Menu_Toggle_HotCorner_WinButton.Checked = $true}
 
 
@@ -149,7 +149,7 @@ $Menu_Toggle_HotCorner_ShowDesktop.Add_Click({
         Stop-Process -Name hotcorner_bottomright_showdesktop
         $Menu_Toggle_HotCorner_ShowDesktop.Checked = $false}
     else {
-        Start-Process $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.exe
+        Start-Process $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe
         $Menu_Toggle_HotCorner_ShowDesktop.Checked = $true}
 
 

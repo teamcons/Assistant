@@ -30,7 +30,7 @@ ps2exe `
 
 
 ps2exe `
--inputFile $ScriptPath\functionalities\hotcorner_topleft.ps1 `
+-inputFile $ScriptPath\parts\hotcorner_topleft.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -41,12 +41,12 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\functionalities\hotcorner_topleft.exe
+-outputFile $ScriptPath\parts\hotcorner_topleft.exe
 
 
 
 ps2exe `
--inputFile $ScriptPath\functionalities\hotcorner_winbutton.ps1 `
+-inputFile $ScriptPath\parts\hotcorner_winbutton.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -57,10 +57,10 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\functionalities\hotcorner_winbutton.exe
+-outputFile $ScriptPath\parts\hotcorner_winbutton.exe
 
 ps2exe `
--inputFile $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.ps1 `
+-inputFile $ScriptPath\parts\hotcorner_bottomright_showdesktop.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -71,10 +71,10 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\functionalities\hotcorner_bottomright_showdesktop.exe
+-outputFile $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe
 
 ps2exe `
--inputFile $ScriptPath\functionalities\keepawake.ps1 `
+-inputFile $ScriptPath\parts\keepawake.ps1 `
 -iconFile $ScriptPath\assets\soft-drink.ico `
 -noConsole `
 -noOutput `
@@ -85,4 +85,4 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\functionalities\keepawake.exe #> #>
+-outputFile $ScriptPath\parts\keepawake.exe #> #>
