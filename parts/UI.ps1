@@ -10,6 +10,12 @@ Add-Type -AssemblyName System.Drawing
 [System.Reflection.Assembly]::LoadWithPartialName('WindowsFormsIntegration')    | out-null
 
 
+$script:icon        = New-Object system.drawing.icon $ScriptPath\assets\soft-drink-mini.ico
+$script:icondark    = New-Object system.drawing.icon $ScriptPath\assets\soft-drink-mini-dark.ico
+
+
+
+
 
 # ----------------------------------------------------
 # Part - Add the systray menu
@@ -59,7 +65,7 @@ $Menu_About.add_Click({
 
 ## Hot corners 
 $script:Submenu_clipboard                   = New-Object System.Windows.Forms.MenuItem
-$Submenu_clipboard.Text                     = $Text_GUI_Submenu_clipboard
+$Submenu_clipboard.Text                     = $text.Clipboard.Menu
 
 $clear                                      = New-Object System.Windows.Forms.MenuItem
 $clear.Text                                 = $text.Clipboard.Clear

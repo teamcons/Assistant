@@ -13,7 +13,7 @@ TopUI = @{
 }
 
 Clipboard = @{
-    Menu                    = "Zwischenablage Verlauf"
+    Menu                    = "Verlauf der Zwischenablage"
     Clear                   = "Verlauf der Zwischenablage löschen"
     Empty                   = "<Leere Zwischenablage>"
     Whitespace              = "<Whitespaces/Tabs>"

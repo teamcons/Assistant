@@ -25,6 +25,10 @@ else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
+
+
+
+
 # When executed at windows start, location is not in the script folder
 Set-Location -Path $ScriptPath
 
