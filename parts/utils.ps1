@@ -163,7 +163,7 @@ Function Clipboard_generate_entries {
         $entry0.Add_Click({Write-Output "Already latest in line!"})
         $menu.MenuItems.Add($entry0)
     }
-    catch {$menu.MenuItems.Add($Text_GUI_empty)}
+    catch {$menu.MenuItems.Add($text.Clipboard.Empty)}
 
     try {
         $entry1 = New-Object System.Windows.Forms.MenuItem
@@ -321,9 +321,9 @@ Function OCR_ToClipboard {
     if ($o -eq '') {
 
         # Tell user we started
-        $Main_Tool_Icon.BalloonTipTitle = $Script:Appname 
+        $Main_Tool_Icon.BalloonTipTitle = $text.TopUI.Appname
         $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Error
-        $Main_Tool_Icon.BalloonTipText = $Script:Text_Notify_OCR_Failed
+        $Main_Tool_Icon.BalloonTipText = $text.OCR.Failed
         $Main_Tool_Icon.ShowBalloonTip(200)
 
 
@@ -333,9 +333,9 @@ Function OCR_ToClipboard {
         [System.Windows.Forms.Clipboard]::SetText($o)
         
         # Tell user we started
-        $Main_Tool_Icon.BalloonTipTitle = $Script:Appname 
+        $Main_Tool_Icon.BalloonTipTitle = $text.TopUI.Appname
         $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-        $Main_Tool_Icon.BalloonTipText = -join($Text_Notify_OCR_Success,$o)
+        $Main_Tool_Icon.BalloonTipText = -join($text.OCR.Success,$o)
         $Main_Tool_Icon.ShowBalloonTip(200)
 
     }

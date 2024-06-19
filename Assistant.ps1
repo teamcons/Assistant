@@ -33,7 +33,7 @@ $script:settings = Import-LocalizedData -FileName settings.psd1 -BaseDirectory $
 $script:text = Import-LocalizedData -FileName interface.psd1 -BaseDirectory $ScriptPath\localizations
 
 # Load everything we need
-Import-Module $ScriptPath\parts\text.ps1
+#Import-Module $ScriptPath\parts\text.ps1
 Import-Module $ScriptPath\parts\utils.ps1
 Import-Module $ScriptPath\parts\UI.ps1
 
@@ -75,9 +75,9 @@ if ($settings.KeepAwake.Enabled)
 
 
 # Tell user we started
-$Main_Tool_Icon.BalloonTipTitle = $Text_NotifyStartTitle
+$Main_Tool_Icon.BalloonTipTitle = $text.TopUI.NotifyStartTitle
 $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-$Main_Tool_Icon.BalloonTipText = $Text_NotifyStartText
+$Main_Tool_Icon.BalloonTipText = $text.TopUI.NotifyStartText
 $Main_Tool_Icon.Visible = $true
 $Main_Tool_Icon.ShowBalloonTip(200)
 

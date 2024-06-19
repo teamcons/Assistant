@@ -18,7 +18,7 @@ Add-Type -AssemblyName System.Drawing
 
 # Display an icon in tray
 $Main_Tool_Icon = New-Object System.Windows.Forms.NotifyIcon
-$Main_Tool_Icon.Text = $Appname
+$Main_Tool_Icon.Text = $text.TopUI.Appname
 $Main_Tool_Icon.Icon = $icon
 $Main_Tool_Icon.Visible = $true
 $Main_Tool_Icon.Add_Click({                    
@@ -31,7 +31,7 @@ $Main_Tool_Icon.Add_Click({
 
 # About in notification bubble
 $Menu_About                             = New-Object System.Windows.Forms.MenuItem
-$Menu_About.Text                        = $Text_GUI_Menu_About
+$Menu_About.Text                        = $text.TopUI.About
 $Menu_About.add_Click({
     Start-Process "https://github.com/teamcons/Assistant"
  })
@@ -45,9 +45,9 @@ $Menu_About.add_Click({
 
 
  # About in notification bubble
-$Menu_OCR                               = New-Object System.Windows.Forms.MenuItem
-$Menu_OCR.Text                          = $Text_GUI_Menu_OCR
-$Menu_OCR.add_Click({OCR_ToClipboard})
+#$Menu_OCR                               = New-Object System.Windows.Forms.MenuItem
+#$Menu_OCR.Text                          = $text.OCR.Menu
+#$Menu_OCR.add_Click({OCR_ToClipboard})
 
 
 
@@ -62,7 +62,7 @@ $script:Submenu_clipboard                   = New-Object System.Windows.Forms.Me
 $Submenu_clipboard.Text                     = $Text_GUI_Submenu_clipboard
 
 $clear                                      = New-Object System.Windows.Forms.MenuItem
-$clear.Text                                 = $Text_GUI_clear
+$clear.Text                                 = $text.Clipboard.Clear
 $clear.Add_Click({Clear-ClipboardHistory})
 
 Clipboard_generate_entries $Submenu_clipboard
@@ -87,7 +87,7 @@ $Submenu_clipboard.Add_Popup({Clipboard_generate_entries $Submenu_clipboard})
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_TopLeft                  = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HotCorner_TopLeft.Checked          = $true
-$Menu_Toggle_HotCorner_TopLeft.Text             = $Text_GUI_Menu_Toggle_HotCorner_TopLeft
+$Menu_Toggle_HotCorner_TopLeft.Text             = $text.Hotcorners.Overview
 $Menu_Toggle_HotCorner_TopLeft.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -112,7 +112,7 @@ $Menu_Toggle_HotCorner_TopLeft.Add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_WinButton = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HotCorner_WinButton.Checked = $false
-$Menu_Toggle_HotCorner_WinButton.Text = $Text_GUI_Menu_Toggle_HotCorner_WinButton
+$Menu_Toggle_HotCorner_WinButton.Text = $text.Hotcorners.WinButton
 $Menu_Toggle_HotCorner_WinButton.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -135,7 +135,7 @@ $Menu_Toggle_HotCorner_WinButton.Add_Click({
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_ShowDesktop = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_HotCorner_ShowDesktop.Checked = $false
-$Menu_Toggle_HotCorner_ShowDesktop.Text = $Text_GUI_Menu_Toggle_HotCorner_ShowDesktop
+$Menu_Toggle_HotCorner_ShowDesktop.Text = $text.Hotcorners.ShowDesktop
 $Menu_Toggle_HotCorner_ShowDesktop.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -159,7 +159,7 @@ $Menu_Toggle_HotCorner_ShowDesktop.Add_Click({
 
 ## Hot corners 
 $script:Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
-$Submenu_hotcorner.Text             = $Text_GUI_Submenu_hotcorner
+$Submenu_hotcorner.Text             = $text.Hotcorners.Menu
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
 $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
@@ -177,7 +177,7 @@ $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
 # Toggle between halt and continue
 $Menu_Toggle_KeepAwake = New-Object System.Windows.Forms.MenuItem
 $Menu_Toggle_KeepAwake.Checked = $true
-$Menu_Toggle_KeepAwake.Text = $Text_GUI_Menu_Toggle_KeepAwake
+$Menu_Toggle_KeepAwake.Text = $text.TopUI.KeepAwake
 $Menu_Toggle_KeepAwake.Add_Click({
     # If it was checked when clicked, stop it
     # Else, it wasnt checked, so start it
@@ -204,7 +204,7 @@ $WshShell = New-Object -ComObject WScript.Shell
 
 # Toggle between halt and continue
 $Menu_Toggle_Autostart = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_Autostart.Text = $Text_GUI_Menu_Toggle_Autostart
+$Menu_Toggle_Autostart.Text = $text.TopUI.Autostart
 $Menu_Toggle_Autostart.Checked = (Test-Path $autostart\Assistant.lnk)
 $Menu_Toggle_Autostart.Add_Click({
     # If it was checked when clicked, delete autostart shortcut
@@ -228,7 +228,7 @@ $Menu_Toggle_Autostart.Add_Click({
 
 # Stop everything
 $Menu_Exit = New-Object System.Windows.Forms.MenuItem
-$Menu_Exit.Text = $Text_GUI_Menu_Exit
+$Menu_Exit.Text = $text.TopUI.Exit
 $Menu_Exit.add_Click($quit)
 
 
