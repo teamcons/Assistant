@@ -21,9 +21,9 @@
     }
 
 
-    Close   = @{
+    CloseActiveWindow   = @{
         Enabled             = $false
-        reactivity          = 500
+        reactivity          = 700
         sensitivity         = 20
     }
 

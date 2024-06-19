@@ -70,9 +70,9 @@ if ($settings.ShowDesktop.Enabled)
     Start-Process  -FilePath $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe -ArgumentList $settings.ShowDesktop.reactivity,$settings.ShowDesktop.sensitivity
 }
 
-if ($settings.Close.Enabled) 
+if ($settings.CloseActiveWindow.Enabled) 
 {
-    Start-Process  -FilePath $ScriptPath\parts\hotcorner_topright_close.exe -ArgumentList $settings.Close.reactivity,$settings.Close.sensitivity
+    Start-Process  -FilePath $ScriptPath\parts\hotcorner_topright_close.exe -ArgumentList $settings.CloseActiveWindow.reactivity,$settings.CloseActiveWindow.sensitivity
 }
 
 

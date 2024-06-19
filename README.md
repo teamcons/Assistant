@@ -79,7 +79,7 @@ hit it a second time to make all windows reappear
 
 Hit the mouse in the top right of the screen to close the current focused window (NOT the maximized one)
 This is Alt+F4 with extra steps, so you should get a window asking for saving if it is something like Word
-By default the hot corner is smaller, in case of accidental movements
+By default the hot corner is smaller and less reactive, in case of accidental movements
 
 
 ### Keep awake
