@@ -24,7 +24,7 @@ Hotcorners = @{
     Overview                = "Bord supérieur gauche affiche la vue d'ensemble"
     WinButton               = "Survoler le logo Windows pour l'ouvrir"
     ShowDesktop             = "Bord inférieur droit affiche le bureau"
-    Close                   = "Bord supérieur droit pour fermer la fenêtre active."
+    Close                   = "Bord supérieur droit ferme la fenêtre active."
 }
 
 
