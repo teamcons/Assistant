@@ -107,6 +107,9 @@ https://gist.github.com/mutaguchi/019ad33e156637585a22a656d8fd3f46
 OCR
 https://github.com/daijro/PsOCRCapture
 
+This blog for localization and its example github
+https://plattsoft.net/2015/08/24/internationalization-with-import-localizeddata/
+https://github.com/platta/plattsoft_PSUICultureExample
 
 The soda can icon
 <a href="https://www.flaticon.com/free-icons/soda" title="soda icons">Soda icons created by Chanut-is-Industries - Flaticon</a>

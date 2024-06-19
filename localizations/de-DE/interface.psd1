@@ -1,29 +1,29 @@
 @{
 
 TopUI = @{
-    Appname                 = "Assistent"
-    About                   = "Über Assistent"
+    Appname                 = "Assistant"
+    About                   = "Über Assistant"
 
     NotifyStartTitle        = "Gestartet!"
     NotifyStartText         = "Klicken Sie auf das Symbol in der Taskleiste, wenn Sie etwas brauchen"
 
-    KeepAwake               = "Computer wachhalten"
-    Autostart               = "Assistent mit Computer starten"
-    Exit                    = "Assistent beenden"
+    KeepAwake               = "Rechner wach halten"
+    Autostart               = "Assistant mit Rechner starten"
+    Exit                    = "Assistant beenden"
 }
 
 Clipboard = @{
-    Menu                    = "Verlauf der Zwischenablage"
-    Clear                   = "Verlauf der Zwischenablage löschen"
+    Menu                    = "Zwischenablage-Verlauf"
+    Clear                   = "Zwischenablage-Verlauf löschen"
     Empty                   = "<Leere Zwischenablage>"
     Whitespace              = "<Whitespaces/Tabs>"
 }
 
 Hotcorners = @{
-    Menu                    = "Heiße Ecken"
-    Overview                = "Klicken Sie auf die linke obere Ecke, um eine Übersicht anzuzeigen."
-    WinButton               = "Zum Öffnen über das Startmenü fahren"
-    ShowDesktop             = "Drücken Sie die untere rechte Ecke, um den Desktop anzuzeigen."
+    Menu                    = "Aktive Ecken"
+    Overview                = "Linke obere Ecke, um eine Übersicht anzuzeigen."
+    WinButton               = "Über Startmenü mit der Maus fahren"
+    ShowDesktop             = "Rechte Untere Ecke, um den Desktop anzuzeigen."
 }
 
 

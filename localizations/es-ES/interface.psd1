@@ -1,15 +1,15 @@
 @{
 
 TopUI = @{
-    Appname                 = "Asistente"
-    About                   = "Acerca de Asistente"
+    Appname                 = "Assistant"
+    About                   = "Acerca de Assistant"
 
     NotifyStartTitle        = "¡Comenzó!"
     NotifyStartText         = "Haz clic en el icono de la bandeja si necesitas algo"
 
     KeepAwake               = "Mantén el ordenador despierto"
-    Autostart               = "Asistente de inicio con el ordenador"
-    Exit                    = "Asistente de renuncia"
+    Autostart               = "Assistant de inicio con el ordenador"
+    Exit                    = "Renunciante Assistant"
 }
 
 Clipboard = @{
