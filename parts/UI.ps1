@@ -92,7 +92,7 @@ $Submenu_clipboard.Add_Popup({Clipboard_generate_entries $Submenu_clipboard})
 
 # Toggle between halt and continue
 $Menu_Toggle_HotCorner_TopLeft                  = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_HotCorner_TopLeft.Checked          = $true
+$Menu_Toggle_HotCorner_TopLeft.Checked          = $false
 $Menu_Toggle_HotCorner_TopLeft.Text             = $text.Hotcorners.Overview
 $Menu_Toggle_HotCorner_TopLeft.Add_Click({
     # If it was checked when clicked, stop it
@@ -198,7 +198,7 @@ $Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_Close)
 
 # Toggle between halt and continue
 $Menu_Toggle_KeepAwake = New-Object System.Windows.Forms.MenuItem
-$Menu_Toggle_KeepAwake.Checked = $true
+$Menu_Toggle_KeepAwake.Checked = $false
 $Menu_Toggle_KeepAwake.Text = $text.TopUI.KeepAwake
 $Menu_Toggle_KeepAwake.Add_Click({
     # If it was checked when clicked, stop it
@@ -209,7 +209,7 @@ $Menu_Toggle_KeepAwake.Add_Click({
         $Menu_Toggle_KeepAwake.Checked = $false
         $Main_Tool_Icon.Icon = $icondark }
     else {
-        Start-Process $ScriptPath\functionalities\keepawake.exe
+        Start-Process $ScriptPath\parts\keepawake.exe
         $Menu_Toggle_KeepAwake.Checked = $true
         $Main_Tool_Icon.Icon = $icon }
  })

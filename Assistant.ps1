@@ -32,8 +32,14 @@ else
 # When executed at windows start, location is not in the script folder
 Set-Location -Path $ScriptPath
 
-# Read the file
-$script:settings = Import-LocalizedData -FileName settings.psd1 -BaseDirectory $ScriptPath\parts
+
+# Load and parse the JSON configuration file
+$script:settings = Get-Content $ScriptPath\parts\state.json -Raw -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue | ConvertFrom-Json -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+
+# legacy #$script:settings = Import-LocalizedData -FileName settings.psd1 -BaseDirectory $ScriptPath\parts
+
+
+# Get localization
 $script:text = Import-LocalizedData -FileName interface.psd1 -BaseDirectory $ScriptPath\localizations
 
 # Load everything we need
@@ -54,31 +60,36 @@ Import-Module $ScriptPath\parts\UI.ps1
 
 
 # Start the subprocesses
-if ($settings.TopLeftOverview.Enabled)
+if ($settings.TopLeftOverview.Enabled -eq "true")
 {
     Start-Process -FilePath $ScriptPath\parts\hotcorner_topleft.exe -ArgumentList $settings.TopLeftOverview.reactivity,$settings.TopLeftOverview.sensitivity 
+    $Menu_Toggle_HotCorner_TopLeft.Checked          = $true
 }
 
-if ($settings.WindowsButton.Enabled) 
+if ($settings.WindowsButton.Enabled -eq "true") 
 {
     Start-Process  -FilePath $ScriptPath\parts\hotcorner_winbutton.exe -ArgumentList $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+    $Menu_Toggle_HotCorner_WinButton.Checked = $true
 }
 
 
-if ($settings.ShowDesktop.Enabled) 
+if ($settings.ShowDesktop.Enabled -eq "true") 
 {
     Start-Process  -FilePath $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe -ArgumentList $settings.ShowDesktop.reactivity,$settings.ShowDesktop.sensitivity
+    $Menu_Toggle_HotCorner_ShowDesktop.Checked = $true
 }
 
-if ($settings.CloseActiveWindow.Enabled) 
+if ($settings.CloseActiveWindow.Enabled -eq "true") 
 {
     Start-Process  -FilePath $ScriptPath\parts\hotcorner_topright_close.exe -ArgumentList $settings.CloseActiveWindow.reactivity,$settings.CloseActiveWindow.sensitivity
+    $Menu_Toggle_HotCorner_Close.Checked = $true
 }
 
 
-if ($settings.KeepAwake.Enabled)
+if ($settings.KeepAwake.Enabled -eq "true")
 {
-    Start-Process -FilePath $ScriptPath\parts\keepawake.exe    
+    Start-Process -FilePath $ScriptPath\parts\keepawake.exe
+    $Menu_Toggle_KeepAwake.Checked = $true
 }
 
 

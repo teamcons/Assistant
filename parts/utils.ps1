@@ -18,13 +18,49 @@ $quit = {
     $Main_Tool_Icon.Visible = $false
 
     # Stop everything that needs stopping
-    if ($Menu_Toggle_HotCorner_TopLeft.Checked)     {Stop-Process -Name hotcorner_topleft}
-    if ($Menu_Toggle_HotCorner_WinButton.Checked)   {Stop-Process -Name hotcorner_winbutton}
-    if ($Menu_Toggle_HotCorner_ShowDesktop.Checked)   {Stop-Process -Name hotcorner_bottomright_showdesktop}
-    if ($Menu_Toggle_HotCorner_Close.Checked)       {Stop-Process -Name hotcorner_topright_close}
+    if ($Menu_Toggle_HotCorner_TopLeft.Checked)
+        {
+        Stop-Process -Name hotcorner_topleft
+        $settings.TopLeftOverview.Enabled = "true"
+        }
+    else {$settings.TopLeftOverview.Enabled = "false"}
 
 
-    if ($Menu_Toggle_KeepAwake.Checked)             {Stop-Process -Name keepawake}
+    if ($Menu_Toggle_HotCorner_WinButton.Checked)
+        {
+        Stop-Process -Name hotcorner_winbutton
+        $settings.WindowsButton.Enabled = "true"
+        }
+    else {$settings.WindowsButton.Enabled = "false"}
+
+    if ($Menu_Toggle_HotCorner_ShowDesktop.Checked)
+        {
+        Stop-Process -Name hotcorner_bottomright_showdesktop
+        $settings.ShowDesktop.Enabled = "true"
+        }
+    else {$settings.ShowDesktop.Enabled = "false"}
+
+
+    if ($Menu_Toggle_HotCorner_Close.Checked)
+        {
+        Stop-Process -Name hotcorner_topright_close
+        $settings.CloseActiveWindow.Enabled = "true"
+        }
+    else {$settings.CloseActiveWindow.Enabled = "false"}
+
+
+    if ($Menu_Toggle_KeepAwake.Checked)
+        {
+        Stop-Process -Name keepawake
+        $settings.KeepAwake.Enabled = "true"
+        }
+    else
+        {$settings.KeepAwake.Enabled = "false"}
+
+
+    Write-Output $settings | ConvertTo-Json | Out-File -Encoding "UTF8" $ScriptPath\parts\state.json
+
+    
 
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();

@@ -111,6 +111,8 @@ Had a look through various sources for having a tray icon. Thanks to all of thes
 Clipboard history module by mutaguchi
 https://gist.github.com/mutaguchi/019ad33e156637585a22a656d8fd3f46
 
+Jason
+https://gist.github.com/jhochwald/56cf0897fa6b82e65f12
 
 OCR
 https://github.com/daijro/PsOCRCapture
