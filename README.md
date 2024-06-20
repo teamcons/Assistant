@@ -17,12 +17,12 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 - Settings : Edit the settings file to change stuff. Careful of following powershell syntax or it breaks
 - Clipboard manager : Remembers past copied elements and toggle between them. Useful if you need to copy paste
 - Localization (I can German, French, and Spanish, only. Itd detect if the puter use those languages)
+- Saves state : Remembers what was enabled or not
 
 ### Todo, maybe, idk
 - OCR
-- Remember what is enabled or not
 - Better localizations
-- more visual hot corners menu ?
+
 
 <table align="center" border="none">
       <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png" /></td>
