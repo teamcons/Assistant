@@ -21,7 +21,7 @@ Clipboard = @{
 
 Hotcorners = @{
     Menu                    = "Aktive Ecken"
-    Overview                = "Linke obere Ecke zeigt obersicht"
+    Overview                = "Linke obere Ecke für übersicht"
     WinButton               = "Über Startmenü mit der Maus fahren"
     ShowDesktop             = "Rechte untere Ecke, zeigt den schreibtisch"
     Close                   = "Rechte obere Ecke, schließt aktiven fenster"
