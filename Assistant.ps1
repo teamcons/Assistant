@@ -90,8 +90,11 @@ if ($settings.KeepAwake.Enabled -eq "true")
 {
     Start-Process -FilePath $ScriptPath\parts\keepawake.exe
     $Menu_Toggle_KeepAwake.Checked = $true
+    $Main_Tool_Icon.Icon = $icon
 }
-
+else {
+    $Main_Tool_Icon.Icon = $icondark
+}
 
 
 # Tell user we started
