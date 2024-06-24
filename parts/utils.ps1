@@ -167,7 +167,7 @@ function ellipsify {
 
     $length = 30
 
-    if ($text.Length -le $length )
+    if ($text.Length -lt $length )
     {
         return $text
     }
