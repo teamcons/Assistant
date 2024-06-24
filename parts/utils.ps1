@@ -206,7 +206,7 @@ Function Clipboard_generate_entries {
             $entry.Text = $text.Clipboard.Whitespace
         }
         else {
-            $entry.Text = -join("1. ", (ellipsify $clipboard_history))
+            $entry.Text = -join((ellipsify $clipboard_history)) #"1. ", 
         }
         $menu.MenuItems.Add($entry)
     }
@@ -223,12 +223,12 @@ Function Clipboard_generate_entries {
             elseif (($clipboard_history[($i - 1)]).trim(" ").Length -eq 0)
             {
                 $entry = New-Object System.Windows.Forms.MenuItem
-                $entry.Text = -join($i,". ",$text.Clipboard.Whitespace)
+                $entry.Text = -join($text.Clipboard.Whitespace) #$i,". ",
                 $menu.MenuItems.Add($entry)
             }
             else {
                 $entry = New-Object System.Windows.Forms.MenuItem
-                $entry.Text = -join($i,". ",( ellipsify $clipboard_history[($i - 1)] ))
+                $entry.Text = -join(( ellipsify $clipboard_history[($i - 1)] )) #$i,". ",
                 $menu.MenuItems.Add($entry)
             }
 
