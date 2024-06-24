@@ -167,12 +167,12 @@ function ellipsify {
 
     $length = 30
 
-    if ($text.Length -lt $length )
+    if ($text.Length -le $length )
     {
         return $text
     }
     else {
-        [string]$new = $text[0..$length] -join ""
+        [string]$new = $text[0..($length - 3)] -join ""
         return -join($new,"...")
     }
 }
