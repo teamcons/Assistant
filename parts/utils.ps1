@@ -172,7 +172,7 @@ function ellipsify {
         return $text
     }
     else {
-        [string]$new = $text[0..($length - 3)] -join ""
+        [string]$new = $text[0..$length] -join ""
         return -join($new,"...")
     }
 }
