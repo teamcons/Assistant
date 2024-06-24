@@ -176,12 +176,14 @@ Function Clipboard_generate_entries {
     # Fetch
     $script:clipboard_history = Get-ClipboardHistory
 
+    # Case where it's empty
     if ($clipboard_history -eq $null )
     {
         $entry = New-Object System.Windows.Forms.MenuItem
         $entry.Text = $text.Clipboard.Empty
         $menu.MenuItems.Add($entry)
     }
+    # Case where theres only one thing
     elseif ($clipboard_history -is [string])
     {
         $entry = New-Object System.Windows.Forms.MenuItem
@@ -190,7 +192,7 @@ Function Clipboard_generate_entries {
             $entry.Text = $text.Clipboard.Whitespace
         }
         else {
-            $entry.Text = (($clipboard_history)[0..25] -join "")
+            $entry.Text = -join("1. ",(($clipboard_history)[0..30] -join ""),"...")
         }
         $menu.MenuItems.Add($entry)
     }
@@ -207,12 +209,12 @@ Function Clipboard_generate_entries {
             elseif (($clipboard_history[($i - 1)]).trim(" ").Length -eq 0)
             {
                 $entry = New-Object System.Windows.Forms.MenuItem
-                $entry.Text = $text.Clipboard.Whitespace
+                $entry.Text = -join($i,". ",$text.Clipboard.Whitespace)
                 $menu.MenuItems.Add($entry)
             }
             else {
                 $entry = New-Object System.Windows.Forms.MenuItem
-                $entry.Text = ($clipboard_history[($i - 1)])[0..25] -join ""
+                $entry.Text = -join($i,". ",(($clipboard_history[($i - 1)])[0..30] -join ""),"...")
                 $menu.MenuItems.Add($entry)
             }
 
@@ -226,6 +228,7 @@ Function Clipboard_generate_entries {
         try {$menu.MenuItems[5].Add_Click({Set-Clipboard $clipboard_history[3]})} catch {Write-Output "no"}
         try {$menu.MenuItems[6].Add_Click({Set-Clipboard $clipboard_history[4]})} catch {Write-Output "no"}
         try {$menu.MenuItems[7].Add_Click({Set-Clipboard $clipboard_history[5]})} catch {Write-Output "no"}
+        try {$menu.MenuItems[8].Add_Click({Set-Clipboard $clipboard_history[6]})} catch {Write-Output "no"}
 
 
     } # end of the great ifelse
