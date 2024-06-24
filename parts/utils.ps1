@@ -161,7 +161,21 @@ function Clear-ClipboardHistory
 # Part - Add the systray menu
 # ----------------------------------------------------        
 
+function ellipsify {
 
+    param ($text)
+
+    $length = 30
+
+    if ($text.Length -lt $length )
+    {
+        return $text
+    }
+    else {
+        [string]$new = $text[0..$length] -join ""
+        return -join($new,"...")
+    }
+}
 
 
 
@@ -192,7 +206,7 @@ Function Clipboard_generate_entries {
             $entry.Text = $text.Clipboard.Whitespace
         }
         else {
-            $entry.Text = -join("1. ",(($clipboard_history)[0..30] -join ""),"...")
+            $entry.Text = -join("1. ", (ellipsify $clipboard_history))
         }
         $menu.MenuItems.Add($entry)
     }
@@ -214,7 +228,7 @@ Function Clipboard_generate_entries {
             }
             else {
                 $entry = New-Object System.Windows.Forms.MenuItem
-                $entry.Text = -join($i,". ",(($clipboard_history[($i - 1)])[0..30] -join ""),"...")
+                $entry.Text = -join($i,". ",( ellipsify $clipboard_history[($i - 1)] ))
                 $menu.MenuItems.Add($entry)
             }
 
