@@ -276,3 +276,15 @@ $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Exit)
 
 
 # ---------------------------------------------------------------------
+
+
+<# 
+$mousewheel = {
+    $m = [System.Windows.Forms.MouseEventArgs]$_
+    # number of relative units to move (+/-)
+    Set-Clipboard (Get-ClipboardHistory)[$m.Delta]
+
+
+}
+$Main_Tool_Icon.add_MouseWheel($mousewheel)
+ #>

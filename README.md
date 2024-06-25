@@ -20,6 +20,7 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 - Saves state : Remembers what was enabled or not
 
 ### Todo, maybe, idk
+- Switch clipboard by scrolling on icon
 - OCR
 - Better localizations
 
