@@ -278,13 +278,52 @@ $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Exit)
 # ---------------------------------------------------------------------
 
 
-<# 
-$mousewheel = {
-    $m = [System.Windows.Forms.MouseEventArgs]$_
-    # number of relative units to move (+/-)
-    Set-Clipboard (Get-ClipboardHistory)[$m.Delta]
 
+
+
+
+<# #================================================================
+# Send a notification. Yes, im used to Linux
+# Take title and text
+function Notify-Send
+{
+    param(
+        [string]$title,
+        [string]$text)
+    
+    Write-Output "[INFO] Notify $title $text"
+    $objNotifyIcon                          = New-Object System.Windows.Forms.NotifyIcon
+    $objNotifyIcon.Icon                     = $icon
+    $objNotifyIcon.BalloonTipTitle          = $title
+    $objNotifyIcon.BalloonTipIcon           = "Info"
+    $objNotifyIcon.BalloonTipText           = $text
+    $objNotifyIcon.Visible                  = $True
+    $objNotifyIcon.ShowBalloonTip(5000)
+
+    $objNotifyIcon.Visible                  = $False
+    #$objNotifyIcon.Icon.Dispose();
+    $objNotifyIcon.Dispose();
 
 }
-$Main_Tool_Icon.add_MouseWheel($mousewheel)
+
+
+
  #>
+<# 
+
+
+$mousewheel = {
+    #$m = [System.Windows.Forms.MouseEventArgs]$_
+    # number of relative units to move (+/-)
+    $c = Get-ClipboardHistory
+    $c = $c[1]
+
+    Set-Clipboard $c
+    Notify-Send $c $c
+}
+$Main_Tool_Icon.add_doubleclick($mousewheel) #>
+ #>
+
+
+
+#  $Main_Tool_Icon.add_mousehover({Notify-Send Get-Clipboard})
