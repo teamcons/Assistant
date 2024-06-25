@@ -6,12 +6,12 @@
                         },
     "WindowsButton":  {
                           "Enabled":  "false",
-                          "reactivity":  "500",
+                          "reactivity":  "400",
                           "sensitivity":  "50"
                       },
     "ShowDesktop":  {
                         "Enabled":  "false",
-                        "reactivity":  "500",
+                        "reactivity":  "400",
                         "sensitivity":  "50"
                     },
     "CloseActiveWindow":  {
