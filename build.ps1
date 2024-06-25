@@ -27,7 +27,7 @@ ps2exe `
 #========================
 # ENERGYDRINK
 
-<# 
+
 
 ps2exe `
 -inputFile $ScriptPath\parts\hotcorner_topleft.ps1 `
@@ -71,7 +71,7 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe #>
+-outputFile $ScriptPath\parts\hotcorner_bottomright_showdesktop.exe
 
 
 ps2exe `
@@ -88,7 +88,7 @@ ps2exe `
 -Verbose `
 -outputFile $ScriptPath\parts\hotcorner_topright_close.exe
 
-<# 
+
 
 ps2exe `
 -inputFile $ScriptPath\parts\keepawake.ps1 `
@@ -102,4 +102,4 @@ ps2exe `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\parts\keepawake.exe #>
+-outputFile $ScriptPath\parts\keepawake.exe
