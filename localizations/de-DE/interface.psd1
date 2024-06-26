@@ -12,6 +12,11 @@ TopUI = @{
     Exit                    = "Assistant beenden"
 }
 
+OCR = @{
+    Menu                    = "Text vom Bildschirm extrahieren und kopieren (OCR)"
+    Failed                  = "< OCR fehlgeschlagen :( Sorry >"
+}
+
 Clipboard = @{
     Menu                    = "Zwischenablage-Verlauf"
     Clear                   = "Zwischenablage-Verlauf löschen"

@@ -252,110 +252,10 @@ Function Clipboard_generate_entries {
 
 
 
+$OCR = {    
+    
 
-
-
-
-
-
-function  OCRCapture {
-
-  Write-Host ('*'*40)
-  # Get old clipboard
-  $oldClipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
-  # Reset clipboard
-  [System.Windows.Forms.Clipboard]::SetText(' ')
-
-  # Take screenshot
-  if (Test-Path -Path $env:SYSTEMROOT"\System32\SnippingTool.exe") {
-    # Run snipping tool (Windows 10)
-    Write-Host '> Executing Snipping Tool'
-    [Diagnostics.Process]::Start('SnippingTool.exe', '/clip').WaitForExit()
-  } else {
-    # Run snip & sketch (Windows 11)
-    Write-Host '> Executing Snip & Sketch'
-    Start-Process 'explorer.exe' 'ms-screenclip:' -Wait
-  }
-  
-  # Wait for image to be copied to clipboard
-  Write-Host '> Waiting for image'
-  $timeout = New-TimeSpan -Seconds 10
-  $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-  do {
-    $clipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
-    Start-Sleep 0.01   # Avoid overloading the CPU
-    if ($stopwatch.elapsed -gt $timeout) {
-      Write-Output 'Failed to copy image to clipboard.'
-      Write-Host '> Failed. Aborting...'
-      [System.Windows.Forms.Clipboard]::SetDataObject($oldClipboard)
-      return
-    }
-  } until ($clipboard.ContainsImage())
-  
-  # Get image
-  $bmp = $clipboard.getimage()
-  # Restore old clipboard
-  [System.Windows.Forms.Clipboard]::SetDataObject($oldClipboard)
-  
-  # If softwareBitmap has a width/height under 150px, extend the image
-  $minPx = 150
-  if (($bmp.Height -lt $minPx) -or ($bmp.Width -lt $minPx)) {
-    $nh = [math]::max($bmp.Height, $minPx)
-    $nw = [math]::max($bmp.Width, $minPx)
-    Write-Host ([String]::Concat('> Extending image (',$bmp.Width,',',$bmp.Height,') -> (',$nw,',',$nh,') px'))
-    $graphics = [Drawing.Graphics]::FromImage(($newBmp = [Drawing.Bitmap]::new($nw, $nh)))
-    $graphics.Clear($bmp.GetPixel(0, 0))
-    if (($bmp.Height -lt $minPx) -and ($bmp.Width -lt $minPx)) {
-      $sf = ([math]::min(([math]::floor($minPx / [math]::max($bmp.Width, $bmp.Height))), 3))
-      if ($sf -gt 1) {Write-Host ([String]::Concat('> Scaling image by ',$sf,'x'))}
-    } else {
-      $sf = 1
-    }
-    $sw = ($sf * $bmp.Width)
-    $sh = ($sf * $bmp.Height)
-    $graphics.DrawImage($bmp, ([math]::floor(($nw-$sw)/2)), ([math]::floor(($nh-$sh)/2)), $sw, $sh)
-    $bmp = $newBmp.Clone()
-    $newBmp.Dispose()
-    $graphics.Dispose()
-  }
-
-  # Save bmp to memory stream
-  Write-Host '> Converting image format to SoftwareBitmap'
-  $memStream = [IO.MemoryStream]::new()
-  $bmp.Save($memStream, 'Bmp')
-
-  # Build SoftwareBitmap
-  $r = [IO.WindowsRuntimeStreamExtensions]::AsRandomAccessStream($memStream)
-  $params = @{
-    AsyncTask  = [BitmapDecoder]::CreateAsync($r)
-    ResultType = [BitmapDecoder]
-  }
-  $bitmapDecoder = Await @params
-  $params = @{ 
-    AsyncTask = $bitmapDecoder.GetSoftwareBitmapAsync()
-    ResultType = [SoftwareBitmap]
-  }
-  $softwareBitmap = Await @params
-  $memStream.Dispose()
-  $r.Dispose()
-
-  # Run OCR
-  Write-Host '> Running OCR'
-  (((Await $ocrEngine.RecognizeAsync($softwareBitmap)([Windows.Media.Ocr.OcrResult])).Lines |
-    ForEach-Object {$_.Text}) -Join "`n")
-  Write-Host '> Completed successfully'
-}
-
-
-
-
-
-
-
-# Extract from image, copy to clipboard if successful
-Function OCR_ToClipboard {
-
-    $o = ((&{OCRCapture}).Trim())
+    $result = (    Start-Process powershell.exe -ArgumentList "-file .\parts\lib\Get-Win10OcrTextFromImage.ps1", "Arg1"  ).text
 
     if ($o -eq '') {
 
@@ -379,9 +279,4 @@ Function OCR_ToClipboard {
 
     }
 
-    
 }
-
-
-
-

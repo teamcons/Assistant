@@ -12,6 +12,11 @@ TopUI = @{
     Exit                    = "Renunciante Assistant"
 }
 
+OCR = @{
+    Menu                    = "Extraer y copiar texto de la pantalla (OCR)"
+    Failed                  = "< OCR Falló :( Lo siento >"
+}
+
 Clipboard = @{
     Menu                    = "Historia del portapapeles"
     Clear                   = "Borrar historial del portapapeles"

@@ -51,9 +51,12 @@ $Menu_About.add_Click({
 
 
  # About in notification bubble
-#$Menu_OCR                               = New-Object System.Windows.Forms.MenuItem
-#$Menu_OCR.Text                          = $text.OCR.Menu
-#$Menu_OCR.add_Click({OCR_ToClipboard})
+$Menu_OCR                               = New-Object System.Windows.Forms.MenuItem
+$Menu_OCR.Text                          = $text.OCR.Menu
+$Menu_OCR.add_Click({OCRCapture})
+
+
+
 
 
 
@@ -263,7 +266,9 @@ $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
 
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 
-#$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_OCR)
+
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_OCR)
+
 
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)

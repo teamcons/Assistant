@@ -12,6 +12,11 @@ TopUI = @{
     Exit                    = "Quit Assistant"
 }
 
+OCR = @{
+    Menu                    = "Extract and copy text from screen (OCR)"
+    Failed                  = "< OCR Failed :( Sorry >"
+}
+
 Clipboard = @{
     Menu                    = "Clipboard history"
     Clear                   = "Clear clipboard history"

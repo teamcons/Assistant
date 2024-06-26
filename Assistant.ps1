@@ -43,7 +43,7 @@ $script:settings = Get-Content $ScriptPath\parts\state.json -Raw -ErrorAction:Si
 $script:text = Import-LocalizedData -FileName interface.psd1 -BaseDirectory $ScriptPath\localizations
 
 # Load everything we need
-#Import-Module $ScriptPath\parts\text.ps1
+Import-Module $ScriptPath\parts\PcOCRCapture.ps1
 Import-Module $ScriptPath\parts\utils.ps1
 Import-Module $ScriptPath\parts\UI.ps1
 

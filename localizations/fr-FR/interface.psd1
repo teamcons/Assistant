@@ -12,6 +12,11 @@ TopUI = @{
     Exit                    = "Quitter Assistant"
 }
 
+OCR = @{
+    Menu                    = "Extraire et copier du texte depuis l'écran (OCR)"
+    Failed                  = "< L'extraction a échouée :( >"
+}
+
 Clipboard = @{
     Menu                    = "Historique du presse-papier"
     Clear                   = "Vider le presse-papier"
