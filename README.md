@@ -23,10 +23,13 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 ### Todo, maybe, idk
 - Switch clipboard entries by scrolling on icon in tray, with a tooltip to say what new latest entry is
 - Better localizations
+- Paste in rapid succession to cycle through clipboard entries quickly ?
+- Timer/"Make some tea" ? or Pomodoro mode ?
 
 
 <table align="center" border="none">
       <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot.png" /></td>
+      <td><img src="https://github.com/teamcons/Assistant/blob/main/images/Screenshot with OCR and german.png" /></td>
 </table>
 
 
@@ -38,12 +41,12 @@ Download the zip folder
 
 Uncompress it
 
-Click on Assistant.exe
+Doubleclick on Assistant.exe
 
 A notification should poke you to tell you Assistant has started
 
 The exe does not work on its own, it needs the other folders
-The hot corners needs their own separate files. They do not work as background process. You can use them alone, but then need the task manager to stop them (no UI)
+The hot corners needs their own separate executables. They do not work as background process. You can use them alone, but then need the task manager to stop them (no UI)
 
 
 # 📚 Documentation
