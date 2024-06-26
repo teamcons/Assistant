@@ -18,10 +18,10 @@ It runs on Windows Forms, and has a .exe file. You dont need special rights to s
 - Clipboard manager : Remembers past copied elements and toggle between them. Useful if you need to copy paste
 - Localization (I can German, French, and Spanish, only. Itd detect if the puter use those languages)
 - Saves state : Remembers what was enabled or not
+- OCR from screen
 
 ### Todo, maybe, idk
-- Switch clipboard by scrolling on icon
-- OCR
+- Switch clipboard entries by scrolling on icon in tray, with a tooltip to say what new latest entry is
 - Better localizations
 
 
@@ -47,6 +47,16 @@ The hot corners needs their own separate files. They do not work as background p
 
 
 # 📚 Documentation
+
+
+### Copy from OCR
+
+Opens the screenshot assistant, so you can select a zone.
+It will then use Windows integrated OCR engine to extract text from it.
+And then put it in clipboard.
+
+NOTE: This may make the antivirus panic a lil bit. That is because windows doesnt like random scripts accessing the screen.
+You can check the sourcecode yourself, there is no funny business.
 
 ### Clipboard history
 
