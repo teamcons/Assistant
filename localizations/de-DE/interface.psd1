@@ -13,8 +13,8 @@ TopUI = @{
 }
 
 OCR = @{
-    Menu                    = "Text vom Bildschirm extrahieren und kopieren (OCR)"
-    Failed                  = "< OCR fehlgeschlagen :( Sorry >"
+    Menu                    = "Text vom Bildschirm kopieren (OCR)"
+    Failed                  = "<OCR fehlgeschlagen :( Sorry>"
 }
 
 Clipboard = @{
