@@ -24,6 +24,13 @@ Clipboard = @{
     Whitespace              = "<Whitespaces/Tabs>"
 }
 
+Timer = @{
+    Menu                    = "Prepare some "
+    Thing                   = "tea"
+    TimesUpTitle            = "Times up !"
+    TimesUpText             = "Times up !"
+}
+
 Hotcorners = @{
     Menu                    = "Hot corners"
     Overview                = "Hit top left edge to show overview"

@@ -21,5 +21,7 @@
                           },
     "KeepAwake":  {
                       "Enabled":  "true"
-                  }
+                  },
+
+    "AlarmTimes": ["5","10","15","30","60","120"]
 }

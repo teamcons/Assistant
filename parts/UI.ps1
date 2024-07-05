@@ -81,11 +81,36 @@ $Submenu_clipboard.Add_Popup({Clipboard_generate_entries $Submenu_clipboard})
 
 
 
+# ----------------------------------------------------
+# Part - TIMER
+# ----------------------------------------------------        
+
+<# 
+
+## Hot corners 
+$script:Submenu_timer                   = New-Object System.Windows.Forms.MenuItem
+$Submenu_timer.Text                     = $text.Clipboard.Timer
+$Submenu_timer.Enabled = $false
 
 
 
+$Submenu_timer.Add_Click({
 
+    # If it was checked when clicked, stop it
+    # Else, it wasnt checked, so start it
+    if ($Menu_Toggle_HotCorner_TopLeft.Checked) {
+        #Stop-Process -Id $hotcorner_topleft_ID
+        Stop-Process -Name hotcorner_topleft
+        $Menu_Toggle_HotCorner_TopLeft.Checked = $false}
+    else {
+        Start-Process $ScriptPath\parts\hotcorner_topleft.exe
+        $Menu_Toggle_HotCorner_TopLeft.Checked = $true
+    
+        $hotcorner_topleft_ID}
 
+})
+
+ #>
 
 
 
