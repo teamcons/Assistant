@@ -236,7 +236,7 @@ Function Clipboard_generate_entries {
 
         # Cannot automate scriptblocks
         # We start from 2, 0 and 1 are "empty clipboard" and the separator
-        #try {$menu.MenuItems[2].Add_Click({Set-Clipboard $clipboard_history[0]})} catch {Write-Output "no"}
+        try {$menu.MenuItems[2].Add_Click({Set-Clipboard $clipboard_history[0]})} catch {Write-Output "no"} # This one shouldnt be needed but
         try {$menu.MenuItems[3].Add_Click({Set-Clipboard $clipboard_history[1]})} catch {Write-Output "no"}
         try {$menu.MenuItems[4].Add_Click({Set-Clipboard $clipboard_history[2]})} catch {Write-Output "no"}
         try {$menu.MenuItems[5].Add_Click({Set-Clipboard $clipboard_history[3]})} catch {Write-Output "no"}
