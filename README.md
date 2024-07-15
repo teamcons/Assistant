@@ -49,6 +49,7 @@ The exe does not work on its own, it needs the other folders
 The hot corners needs their own separate executables. They do not work as background process. You can use them alone, but then need the task manager to stop them (no UI)
 
 
+
 # 📚 Documentation
 
 
@@ -69,6 +70,7 @@ You can clear clipboard history by clicking on "Clear history"
 
 This uses Windows native feature (what you get with Meta+V) to retrieve history
 
+Double-clicking on the icon tray sets your clipboard as the second latest thing you copied
 
 
 ### Hot corners

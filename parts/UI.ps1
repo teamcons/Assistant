@@ -33,6 +33,9 @@ $Main_Tool_Icon.Add_Click({
     }
 })
 
+# Double click switches to second clipboard entry
+$Main_Tool_Icon.add_doubleclick({Set-Clipboard (Get-ClipboardHistory)[1]})
+
 
 
 # About in notification bubble
