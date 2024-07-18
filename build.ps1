@@ -5,7 +5,7 @@ else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
-
+<# 
 #========================
 # ENERGYDRINK
 #<# 
@@ -27,7 +27,7 @@ ps2exe `
 #========================
 # ENERGYDRINK
 
-
+<# 
 
 ps2exe `
 -inputFile $ScriptPath\parts\hotcorner_topleft.ps1 `
@@ -103,3 +103,19 @@ ps2exe `
 -version 0.9 `
 -Verbose `
 -outputFile $ScriptPath\parts\keepawake.exe
+
+ #> #>
+
+ps2exe `
+-inputFile $ScriptPath\parts\doOCR.ps1 `
+-iconFile $ScriptPath\assets\soft-drink.ico `
+-noConsole `
+-noOutput `
+-exitOnCancel `
+-title "do OCR" `
+-description "OCR on the screen, output to clipboard" `
+-company "teamcons" `
+-copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
+-version 0.9 `
+-Verbose `
+-outputFile $ScriptPath\parts\doOCR.exe

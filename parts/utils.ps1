@@ -250,34 +250,3 @@ Function Clipboard_generate_entries {
 
 } # End of Clipboard_generate_entries
 
-
-
-$OCR = {    
-    
-
-    $result = (    Start-Process powershell.exe -ArgumentList "-file .\parts\lib\Get-Win10OcrTextFromImage.ps1", "Arg1"  ).text
-
-    if ($o -eq '') {
-
-        # Tell user we started
-        $Main_Tool_Icon.BalloonTipTitle = $text.TopUI.Appname
-        $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Error
-        $Main_Tool_Icon.BalloonTipText = $text.OCR.Failed
-        $Main_Tool_Icon.ShowBalloonTip(200)
-
-
-    }
-    else {
-
-        [System.Windows.Forms.Clipboard]::SetText($o)
-        
-        # Tell user we started
-        $Main_Tool_Icon.BalloonTipTitle = $text.TopUI.Appname
-        $Main_Tool_Icon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info
-        $Main_Tool_Icon.BalloonTipText = -join($text.OCR.Success,$o)
-        $Main_Tool_Icon.ShowBalloonTip(200)
-
-    }
-
-}
-

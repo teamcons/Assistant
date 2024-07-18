@@ -56,7 +56,11 @@ $Menu_About.add_Click({
  # About in notification bubble
 $Menu_OCR                               = New-Object System.Windows.Forms.MenuItem
 $Menu_OCR.Text                          = $text.OCR.Menu
-$Menu_OCR.add_Click({OCRCapture})
+$Menu_OCR.add_Click({
+    
+    try {Start-Process $ScriptPath\parts\doOCR.exe}
+    catch {Set-Clipboard $text.OCR.Failed}
+})
 
 
 
