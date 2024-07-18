@@ -64,6 +64,8 @@ $quit = {
 
     $Main_Tool_Icon.Icon.Dispose();
     $Main_Tool_Icon.Dispose();
+
+    [void][System.Windows.Forms.Application]::Exit($appContext)
     $appContext.Dispose();
  }
 

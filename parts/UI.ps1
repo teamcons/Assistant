@@ -10,8 +10,8 @@ Add-Type -AssemblyName System.Drawing
 [System.Reflection.Assembly]::LoadWithPartialName('WindowsFormsIntegration')    | out-null
 
 
-$script:icon        = New-Object system.drawing.icon $ScriptPath\assets\soft-drink-mini.ico
-$script:icondark    = New-Object system.drawing.icon $ScriptPath\assets\soft-drink-mini-dark.ico
+$script:icon        = New-Object system.drawing.icon $ScriptPath\assets\Assistant.ico
+$script:icondark    = New-Object system.drawing.icon $ScriptPath\assets\Assistant-mono.ico
 
 
 
@@ -271,7 +271,7 @@ $Menu_Toggle_Autostart.Add_Click({
         $Menu_Toggle_Autostart.Checked = $false}
     else {
         $Shortcut = $WshShell.CreateShortcut( -join($autostart,"\Assistant.lnk"))
-        $Shortcut.IconLocation = (-join($ScriptPath,"\assets\soft-drink.ico"))
+        $Shortcut.IconLocation = (-join($ScriptPath,"\assets\Assistant.ico"))
         $Shortcut.TargetPath = (-join($ScriptPath,"\Assistant.exe"))
         $Shortcut.Save()
         $Menu_Toggle_Autostart.Checked = $true }

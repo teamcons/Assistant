@@ -5,13 +5,13 @@ else
     {$global:ScriptPath = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0]) 
     if (!$ScriptPath){ $global:ScriptPath = "." } }
 
-<# 
+
 #========================
 # ENERGYDRINK
-#<# 
+
 ps2exe `
 -inputFile $ScriptPath\Assistant.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
@@ -22,16 +22,16 @@ ps2exe `
 -version 0.9 `
 -Verbose `
 -outputFile $ScriptPath\Assistant.exe
- #>
+
 
 #========================
 # ENERGYDRINK
 
-<# 
+
 
 ps2exe `
 -inputFile $ScriptPath\parts\hotcorner_topleft.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
@@ -47,7 +47,7 @@ ps2exe `
 
 ps2exe `
 -inputFile $ScriptPath\parts\hotcorner_winbutton.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
@@ -61,7 +61,7 @@ ps2exe `
 
 ps2exe `
 -inputFile $ScriptPath\parts\hotcorner_bottomright_showdesktop.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
@@ -76,7 +76,7 @@ ps2exe `
 
 ps2exe `
 -inputFile $ScriptPath\parts\hotcorner_topright_close.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
@@ -92,7 +92,7 @@ ps2exe `
 
 ps2exe `
 -inputFile $ScriptPath\parts\keepawake.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
@@ -104,11 +104,11 @@ ps2exe `
 -Verbose `
 -outputFile $ScriptPath\parts\keepawake.exe
 
- #> #>
+
 
 ps2exe `
 -inputFile $ScriptPath\parts\doOCR.ps1 `
--iconFile $ScriptPath\assets\soft-drink.ico `
+-iconFile $ScriptPath\assets\Assistant.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
