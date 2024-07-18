@@ -33,7 +33,9 @@ Add-Type -AssemblyName System.Windows.Forms
 
 # We check a bit further on X, because the button is off center
 # This way the hot corner is a real "hover over windows logo" button
-[int]$RightSide                         = ($hotcorner_sensitivity + 5)
+#[int]$RightSide                         = ($hotcorner_sensitivity + 5)
+
+[int]$RightSide                         = ($hotcorner_sensitivity)
 
 
 

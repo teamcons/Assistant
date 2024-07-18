@@ -29,11 +29,17 @@ Add-Type -AssemblyName System.Windows.Forms
 
 # Calculate positions of the hot corner area
 [int]$Bottom                            = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
-[int]$BottomInRange                     = ($Bottom - 48) # Size of bar
 
 # Calculate positions of the hot corner area
 [int]$Right                            = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Width
-[int]$RightInRange                     = ($Right - 16) # Do not use sensitivity : We risk activating on hovering date
+
+
+[int]$BottomInRange                     = ($Bottom - $hotcorner_sensitivity) # Size of bar
+[int]$RightInRange                     = ($Right - $hotcorner_sensitivity) # Do not use sensitivity : We risk activating on hovering date
+
+
+#[int]$BottomInRange                     = ($Bottom - 48) # Size of bar
+#[int]$RightInRange                     = ($Right - 16) # Do not use sensitivity : We risk activating on hovering date
 
 
 
