@@ -58,7 +58,7 @@ $Menu_OCR                               = New-Object System.Windows.Forms.MenuIt
 $Menu_OCR.Text                          = $text.OCR.Menu
 $Menu_OCR.add_Click({
     
-    try {Start-Process $ScriptPath\parts\doOCR.exe}
+    try {OCRCapture} # Or Start-Process $ScriptPath\parts\doOCR.exe, but it feels slow
     catch {Set-Clipboard $text.OCR.Failed}
 })
 

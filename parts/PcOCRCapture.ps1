@@ -41,9 +41,9 @@ using namespace Windows.Graphics.Imaging
 Function OCRCapture {
   Write-Host ('*'*40)
   # Get old clipboard
-  $oldClipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
+  #$oldClipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
   # Reset clipboard
-  [System.Windows.Forms.Clipboard]::SetText(' ')
+  #[System.Windows.Forms.Clipboard]::SetText(' ')
 
   # Take screenshot
   if (Test-Path -Path $env:SYSTEMROOT"\System32\SnippingTool.exe") {
@@ -74,7 +74,7 @@ Function OCRCapture {
   # Get image
   $bmp = $clipboard.getimage()
   # Restore old clipboard
-  [System.Windows.Forms.Clipboard]::SetDataObject($oldClipboard)
+  #[System.Windows.Forms.Clipboard]::SetDataObject($oldClipboard)
   
   # If softwareBitmap has a width/height under 150px, extend the image
   $minPx = 150
@@ -121,7 +121,6 @@ Function OCRCapture {
   # Run OCR
   $resuLt = (Await $ocrEngine.RecognizeAsync($softwareBitmap) ([Windows.Media.Ocr.OcrResult]))
 
-  try { Set-Clipboard $result.Text}
-  catch {Set-Clipboard $text.OCR.Failed}
+  Set-Clipboard $result.Text
 
 }
