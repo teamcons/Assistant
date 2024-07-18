@@ -1,6 +1,6 @@
 
 
-# 💽 Assistant
+
 <p align="center">
   <img width="15%" align="center" src="assets/virtual-assistant.png" alt="logo">
 </p>
