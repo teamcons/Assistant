@@ -1,7 +1,13 @@
 
 
 # 💽 Assistant
-
+<p align="center">
+  <img width="15%" align="center" src="assets/virtual-assistant.png" alt="logo">
+</p>
+  <h1 align="center">Assistant</h1>
+<p align="center">
+  A small utility sitting in the tray
+</p>
 
 A small utility sitting in the tray, which offers several handy functions lacking for windows, like hot corners, clipboard management, caffeine...
 
@@ -137,8 +143,6 @@ This blog for localization and its example github
 https://plattsoft.net/2015/08/24/internationalization-with-import-localizeddata/
 https://github.com/platta/plattsoft_PSUICultureExample
 
-The soda can icon
-<a href="https://www.flaticon.com/free-icons/soda" title="soda icons">Soda icons created by Chanut-is-Industries - Flaticon</a>
-
+The adorable icon
 <a href="https://www.flaticon.com/free-icons/virtual-assistant" title="virtual assistant icons">Virtual assistant icons created by Freepik - Flaticon</a>
 
