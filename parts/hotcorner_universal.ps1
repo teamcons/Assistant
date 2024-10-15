@@ -36,7 +36,7 @@ Add-Type -AssemblyName System.Windows.Forms
     #==========================================
 
 #========================================
-# This is very ugly, but we cannot send "Meta + Tab" otherwise
+# This is very ugly, but we cannot send "Meta + Stuff" otherwise and it gives much more flexibility than proper powershell
 # We basically code in another language what we need, and slorp it in our code as a function
 #https://www.itcodar.com/csharp/sending-windows-key-using-sendkeys.html
 $source = @"
