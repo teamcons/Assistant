@@ -107,8 +107,13 @@ switch ($hotcorner_where)
 # Define key combos for it
 # We dont want a function which tests each time everything, thats useless
 # So we define a function depending on what we need
+
+# Some keycodes: https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/keycode-constants
 switch ($hotcorner_what) {
-    "overview" {
+
+
+    "overview"    # Win + tab
+    {
         function action {
             [KeySends.KeySend]::KeyDown("LWin")
             [KeySends.KeySend]::KeyDown("Tab")
@@ -116,12 +121,19 @@ switch ($hotcorner_what) {
             [KeySends.KeySend]::KeyUp("Tab")
         }
     }
-    "winbutton" {
+
+
+    "winbutton"    # Win
+    {
         function action {
-            [System.Windows.Forms.SendKeys]::SendWait('^{ESC}')
+            [KeySends.KeySend]::KeyDown("LWin")
+            [KeySends.KeySend]::KeyUp("LWin")
         }
     }
-    "showdesktop" {
+
+
+    "showdesktop"   # Win + D
+    {
         function action {
             [KeySends.KeySend]::KeyDown("LWin")
             [KeySends.KeySend]::KeyDown("D")
@@ -130,41 +142,80 @@ switch ($hotcorner_what) {
         }
     }
 
-    "desktopright" {
+    "desktopright"  # Win + Ctrl + Right arrow
+    {
         function action {
             [KeySends.KeySend]::KeyDown("LWin")
-            [KeySends.KeySend]::KeyDown("^")
-            [KeySends.KeySend]::KeyDown("RIGHT")
+            [KeySends.KeySend]::KeyDown(0x11)
+            [KeySends.KeySend]::KeyDown(0x27)
             [KeySends.KeySend]::KeyUp("LWin")
-            [KeySends.KeySend]::KeyUp("^")
-            [KeySends.KeySend]::KeyUp("RIGHT")            
+            [KeySends.KeySend]::KeyUp(0x11)
+            [KeySends.KeySend]::KeyUp(0x27)            
         }
     }
 
-    "desktopleft" {
+    "desktopleft"   # Win + Ctrl + Left arrow
+    {
         function action {
             [KeySends.KeySend]::KeyDown("LWin")
-            [KeySends.KeySend]::KeyDown("^")
-            [KeySends.KeySend]::KeyDown("LEFT")
+            [KeySends.KeySend]::KeyDown(0x11)
+            [KeySends.KeySend]::KeyDown(0x25)
             [KeySends.KeySend]::KeyUp("LWin")
-            [KeySends.KeySend]::KeyUp("^")
-            [KeySends.KeySend]::KeyUp("LEFT")            
+            [KeySends.KeySend]::KeyUp(0x11)
+            [KeySends.KeySend]::KeyUp(0x25)            
         }
     }
 
 
-    "closewindow" {
+    "closewindow"    # Alt + F4
+    {
         function action {
             [System.Windows.Forms.SendKeys]::SendWait('%{F4}')
         }
     }
 
-    "showclipboard" {
+
+    "showclipboard"  # Win + V
+    {
         function action {
             [KeySends.KeySend]::KeyDown("LWin")
             [KeySends.KeySend]::KeyDown("V")
             [KeySends.KeySend]::KeyUp("LWin")
             [KeySends.KeySend]::KeyUp("V")
+        }
+    }
+
+
+    "smallerwindow"   # Win + Down arrow
+    {
+        function action {
+            [KeySends.KeySend]::KeyDown("LWin")
+            [KeySends.KeySend]::KeyDown(0x28)
+            [KeySends.KeySend]::KeyUp("LWin")
+            [KeySends.KeySend]::KeyUp(0x28)            
+        }
+    }
+
+    "screenshot"   # Printscreen
+    {
+        function action {
+            [KeySends.KeySend]::KeyDown(0x2A)
+            [KeySends.KeySend]::KeyUp(0x2A)            
+        }
+    }
+
+    "capslock"   # Capslock
+    {
+        function action {
+            [KeySends.KeySend]::KeyDown(0x14)
+            [KeySends.KeySend]::KeyUp(0x14)            
+        }
+    }
+
+    "alttab"   # Alttab
+    {
+        function action {
+            [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')       
         }
     }
 }
