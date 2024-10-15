@@ -26,9 +26,6 @@ param(
     )
 
 
-# Imports
-Add-Type -AssemblyName System.Windows.Forms
-
 
 
     #==========================================
@@ -64,6 +61,7 @@ namespace KeySends
 }
 "@
 Add-Type -TypeDefinition $source -ReferencedAssemblies "System.Windows.Forms"
+Add-Type -AssemblyName System.Windows.Forms
 
 
 
