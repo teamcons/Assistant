@@ -210,6 +210,41 @@ $Menu_Toggle_HotCorner_Close.Add_Click({
 
  #>
 
+
+
+ $Menu_Toggle_HotCorner_Overview = New-Object System.Windows.Forms.MenuItem
+ $Menu_Toggle_HotCorner_Overview.Checked = $false
+ $Menu_Toggle_HotCorner_Overview.Text = $text.Hotcorners.Overview
+ $Menu_Toggle_HotCorner_Overview.Add_Click({
+     # If it was checked when clicked, stop it
+     # Else, it wasnt checked, so start it
+     if ($Menu_Toggle_HotCorner_Overview.Checked) {
+         Stop-Process -Name hotcorner
+         $Menu_Toggle_HotCorner_Overview.Checked = $false}
+     else {
+         Start-Process $ScriptPath\parts\hotcorner.exe -ArgumentList "topleft" "overview" $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+         $Menu_Toggle_HotCorner_Overview.Checked = $true}
+  })
+
+  $Menu_Toggle_HotCorner_OCR = New-Object System.Windows.Forms.MenuItem
+  $Menu_Toggle_HotCorner_OCR.Checked = $false
+  $Menu_Toggle_HotCorner_OCR.Text = $text.Hotcorners.Overview
+  $Menu_Toggle_HotCorner_OCR.Add_Click({
+      # If it was checked when clicked, stop it
+      # Else, it wasnt checked, so start it
+      if ($Menu_Toggle_HotCorner_OCR.Checked) {
+          Stop-Process -Name hotcorner
+          $Menu_Toggle_HotCorner_OCR.Checked = $false}
+      else {
+          Start-Process $ScriptPath\parts\hotcorner.exe -ArgumentList "topleft" "OCR" $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
+          $Menu_Toggle_HotCorner_OCR.Checked = $true}
+   })
+
+
+
+
+
+
 # ----------------------------------------------------
 # Part - HOTCORNER MENU
 # ----------------------------------------------------        
