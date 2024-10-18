@@ -107,15 +107,15 @@ ps2exe `
 
 
 ps2exe `
--inputFile $ScriptPath\parts\doOCR.ps1 `
--iconFile $ScriptPath\assets\Assistant.ico `
+-inputFile $ScriptPath\parts\quickOCR.ps1 `
+-iconFile $ScriptPath\assets\ocr.ico `
 -noConsole `
 -noOutput `
 -exitOnCancel `
--title "do OCR" `
+-title "quick OCR" `
 -description "OCR on the screen, output to clipboard" `
 -company "teamcons" `
 -copyright "GPL-3.0 Stella - stella.menier@gmx.de" `
 -version 0.9 `
 -Verbose `
--outputFile $ScriptPath\parts\doOCR.exe
+-outputFile $ScriptPath\parts\quickOCR.exe
