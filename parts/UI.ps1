@@ -144,7 +144,7 @@ $Menu_Toggle_HotCorner_TopLeft.Add_Click({
  })
 
 
-
+<# 
 # ----------------------------------------------------
 # Part - HOTCORNER-META
 # ----------------------------------------------------        
@@ -208,19 +208,19 @@ $Menu_Toggle_HotCorner_Close.Add_Click({
         $Menu_Toggle_HotCorner_Close.Checked = $true}
  })
 
-
+ #>
 
 # ----------------------------------------------------
 # Part - HOTCORNER MENU
 # ----------------------------------------------------        
 
 ## Hot corners 
-#$script:Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
-#$Submenu_hotcorner.Text             = $text.Hotcorners.Menu
-#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
-#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
-#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
-#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_Close)
+$script:Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
+$Submenu_hotcorner.Text             = $text.Hotcorners.Menu
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
+$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_Close)
 
 
 
