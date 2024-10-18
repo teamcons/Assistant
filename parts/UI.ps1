@@ -215,12 +215,12 @@ $Menu_Toggle_HotCorner_Close.Add_Click({
 # ----------------------------------------------------        
 
 ## Hot corners 
-$script:Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
-$Submenu_hotcorner.Text             = $text.Hotcorners.Menu
-$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
-$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
-$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
-$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_Close)
+#$script:Submenu_hotcorner                  = New-Object System.Windows.Forms.MenuItem
+#$Submenu_hotcorner.Text             = $text.Hotcorners.Menu
+#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
+#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_WinButton)
+#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_ShowDesktop)
+#$Submenu_hotcorner.MenuItems.Add($Menu_Toggle_HotCorner_Close)
 
 
 
@@ -299,12 +299,14 @@ $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_About)
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 
 
+
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_OCR)
 
 
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
-$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
+#$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_hotcorner)
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_HotCorner_TopLeft)
 
+$Main_Tool_Icon.contextMenu.MenuItems.Add($Submenu_clipboard)
 
 $Main_Tool_Icon.ContextMenu.MenuItems.Add("-");
 $Main_Tool_Icon.contextMenu.MenuItems.Add($Menu_Toggle_KeepAwake)

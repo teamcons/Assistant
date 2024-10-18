@@ -146,3 +146,5 @@ https://github.com/platta/plattsoft_PSUICultureExample
 The adorable icon
 <a href="https://www.flaticon.com/free-icons/virtual-assistant" title="virtual assistant icons">Virtual assistant icons created by Freepik - Flaticon</a>
 
+OCR
+<a href="https://www.flaticon.com/free-icons/ocr" title="ocr icons">Ocr icons created by Freepik - Flaticon</a>
