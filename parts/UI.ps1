@@ -210,7 +210,7 @@ $Menu_Toggle_HotCorner_Close.Add_Click({
 
  #>
 
-
+<# 
 
  $Menu_Toggle_HotCorner_Overview = New-Object System.Windows.Forms.MenuItem
  $Menu_Toggle_HotCorner_Overview.Checked = $false
@@ -239,7 +239,7 @@ $Menu_Toggle_HotCorner_Close.Add_Click({
           Start-Process $ScriptPath\parts\hotcorner.exe -ArgumentList "topleft" "OCR" $settings.WindowsButton.reactivity,$settings.WindowsButton.sensitivity
           $Menu_Toggle_HotCorner_OCR.Checked = $true}
    })
-
+ #>
 
 
 
